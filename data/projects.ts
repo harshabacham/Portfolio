@@ -66,7 +66,9 @@ export const GRAPHIC_DESIGN_WORKS: GraphicProject[] = [
   { id: 'gd-59', title: 'Poster 59', description: '', image: getDriveUrl('1e_6CWMQFNqIoILEKNOKEVHM_z0scrYr-'), tools: [], medium: 'Editorial Design' },
   { id: 'gd-60', title: 'Poster 60', description: '', image: getDriveUrl('1kW6BLtnPqEbJITwZrY2x2a5g19tFkzFa'), tools: [], medium: 'Brand Identity' },
   { id: 'gd-61', title: 'Poster 61', description: '', image: getDriveUrl('1m4ZCkwgIfWgPWuzxATfsqaonnk3y3iMC'), tools: [], medium: 'Modern Poster' },
-  { id: 'gd-62', title: 'Poster 62', description: '', image: getDriveUrl('1pQY4upA4FpYbj5SBrqu_tt4LvkNAxsgi'), tools: [], medium: 'Visual Identity' }
+  { id: 'gd-62', title: 'Poster 62', description: '', image: getDriveUrl('1pQY4upA4FpYbj5SBrqu_tt4LvkNAxsgi'), tools: [], medium: 'Visual Identity' },
+  { id: 'gd-63', title: 'Poster 63', description: '', image: getDriveUrl('1aGpDyGcjAFr7IbSN45M8JB_uqnFKnW1l'), tools: [], medium: 'Visual Design' },
+  { id: 'gd-64', title: 'Poster 64', description: '', image: getDriveUrl('1n2pWY6Ls5yL0_YCrdrHGYc7jEr2DFFFX'), tools: [], medium: 'Visual Design' },
 ];
 
 export const WEB_DEVELOPMENT_WORKS: WebProject[] = [
@@ -105,6 +107,17 @@ export const WEB_DEVELOPMENT_WORKS: WebProject[] = [
   },
   {
     id: 'web-4',
+    title: 'BrandMint Studios',
+    description: 'A cutting-edge platform designed for BrandMint Studios, where customers get all details of services with prices.',
+    image: getScreenshotUrl('https://brandmintstudios.vercel.app'),
+    tools: ['React', 'Tailwind CSS', 'Vercel'],
+    techStack: ['Next.js', 'Java Script', 'Flutter'],
+    role: 'Web Developer',
+    link: 'https://alfalpu.vercel.app/',
+    github: '#'
+  },
+  {
+    id: 'web-5',
     title: 'IPC Debugger',
     description: 'Developed a web-based IPC Debugger to assist students in learning and debugging inter-process communication concepts through a simple and interactive interface.',
     image: getScreenshotUrl('https://ipcdebugger.netlify.app'),
