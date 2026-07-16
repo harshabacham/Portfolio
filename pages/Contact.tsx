@@ -1,6 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
-import { Mail, MessageSquare, Linkedin, Github, Send, AlertCircle, CheckCircle2, MapPin, Calendar, ArrowRight } from 'lucide-react';
+import { Mail, Github, Linkedin, Send, MapPin, Calendar, CheckCircle, Terminal } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import ScrollReveal from '../components/ScrollReveal';
+import { SpotlightCard } from '../components/ui/SpotlightCard';
+import { ShinyButton } from '../components/ui/ShinyButton';
+import { InteractiveGridBackground } from '../components/ui/InteractiveGridBackground';
+import { Wave } from '@/components/ui/Wave';
 
 interface FormState {
   name: string;
@@ -26,6 +31,7 @@ const Contact: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const projectTypes = ['Web Development', 'App Development', 'Graphic Design', 'Other'];
 
@@ -62,8 +68,8 @@ const Contact: React.FC = () => {
     setTouched({ name: true, email: true, message: true });
     if (Object.keys(errors).length === 0) {
       setIsSubmitting(true);
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      alert('Message received. Harsha will get back to you shortly.');
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setSubmitted(true);
       setFormState({ name: '', email: '', projectType: 'Web Development', message: '' });
       setTouched({});
       setIsSubmitting(false);
@@ -71,179 +77,265 @@ const Contact: React.FC = () => {
   };
 
   const getInputClass = (fieldName: keyof FormErrors) => {
-    const base = "w-full bg-zinc-900/50 border rounded-2xl px-6 py-4 focus:outline-none transition-all duration-500 font-light ";
-    if (touched[fieldName] && errors[fieldName]) return base + "border-red-500/30 focus:border-red-500 bg-red-500/5";
-    if (touched[fieldName] && !errors[fieldName]) return base + "border-emerald-500/20 focus:border-emerald-500/50";
-    return base + "border-white/5 focus:border-white/20";
+    const base = "w-full bg-white dark:bg-neutral-900 text-[#111111] dark:text-[#FAF9F6] border rounded-xl px-5 py-4 focus:outline-none transition-all duration-500 font-light text-sm shadow-[0_2px_8px_rgba(0,0,0,0.01)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)] ";
+    if (touched[fieldName] && errors[fieldName]) return base + "border-red-500/30 focus:border-red-500 bg-red-500/[0.005] dark:bg-red-500/[0.02]";
+    if (touched[fieldName] && !errors[fieldName]) return base + "border-emerald-500/20 focus:border-emerald-500/40";
+    return base + "border-black/5 dark:border-white/10 focus:border-black/10 dark:focus:border-white focus:shadow-[0_4px_16px_rgba(0,0,0,0.02)]";
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 pt-32 pb-64">
-      {/* Hero Section */}
-      <header className="mb-24 space-y-8">
-        <div className="flex items-center gap-3 text-zinc-500 uppercase tracking-[0.3em] text-[10px] font-bold">
-          <span className="w-8 h-[1px] bg-zinc-800"></span> 05 // Connection
-        </div>
-        <h1 className="text-6xl md:text-[8vw] font-bold tracking-tighter leading-[0.85] text-white">
-          Let’s Build <br />
-          <span className="serif italic font-normal text-zinc-400">Something New.</span>
-        </h1>
-        <p className="text-xl text-zinc-500 font-light leading-relaxed max-w-2xl italic serif">
-          Currently accepting new projects and creative collaborations. If you have an idea that needs a technical or visual edge, let's talk.
-        </p>
-      </header>
+    <div className="pb-40 bg-[#FAF9F6] dark:bg-[#0A0A0A] text-[#111111] dark:text-[#FAF9F6] transition-colors duration-500 selection:bg-black selection:text-white dark:selection:bg-[#FAF9F6] dark:selection:text-black min-h-screen relative overflow-hidden font-inter">
+      {/* 21st.dev Interactive Grid Background with Cursor Tracking Spotlight */}
+      <InteractiveGridBackground />
+      
+      {/* Soft warm aesthetic ambient orb */}
+      <div className="absolute top-[20%] right-[20%] w-[600px] h-[600px] bg-[#FF5A36]/[0.02] rounded-full blur-[150px] pointer-events-none animate-bounce-slow"></div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
-        {/* Left: Contact Details */}
-        <div className="lg:col-span-4 space-y-12">
-          <div className="space-y-10">
-            {/* Availability Badge */}
-            <div className="flex items-center gap-4 px-6 py-4 glass rounded-2xl border border-white/5 w-fit">
-              <div className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+      <div className="max-w-7xl mx-auto px-6 pt-32 pb-16 relative z-10">
+        
+        {/* Page Header */}
+        <ScrollReveal direction="up" delay={50}>
+          <header className="mb-24 border-b border-black/[0.04] dark:border-white/[0.06] pb-16">
+            <div className="max-w-3xl space-y-6">
+              <div className="flex items-center gap-3 text-neutral-400 text-[9px] font-mono uppercase tracking-[0.25em] font-bold">
+                <span className="w-8 h-[1px] bg-neutral-300 dark:bg-neutral-800"></span> 05 // SYSTEM CONTACT
               </div>
-              <span className="text-xs font-bold uppercase tracking-widest text-emerald-500/80">Available for Q4 2025</span>
+              <h1 className="text-5xl md:text-[6.5vw] font-outfit font-extrabold tracking-tighter leading-[0.88] uppercase text-neutral-900 dark:text-neutral-50">
+                START <span className="font-signature font-normal text-[#FF6A00] tracking-normal text-[6.5vw] md:text-[7vw] normal-case">inquiry</span>
+              </h1>
+              <p className="font-outfit text-lg md:text-xl text-neutral-500 dark:text-neutral-400 font-light leading-relaxed max-w-2xl">
+                Accepting bespoke requests, system audits, and high-end visual compositions.
+              </p>
             </div>
+          </header>
+        </ScrollReveal>
 
-            <div className="space-y-6">
-              <h3 className="text-zinc-500 text-[10px] font-bold uppercase tracking-[0.2em]">Contact Information</h3>
-              
-              <a href="mailto:bachamharsha4091@gmail.com" className="group block p-8 glass rounded-[2rem] border border-white/5 hover:border-white/20 transition-all duration-500">
-                <div className="flex items-start justify-between">
-                  <div className="space-y-3">
-                    <Mail size={20} className="text-zinc-500 group-hover:text-white transition-colors" />
-                    <p className="text-xl font-bold break-all">bachamharsha4091@gmail.com</p>
-                    <p className="text-xs text-zinc-500">Expect a response within 24 hours.</p>
-                  </div>
-                  <ArrowRight size={18} className="text-zinc-700 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </a>
-
-              <div className="p-8 glass rounded-[2rem] border border-white/5 space-y-6">
-                <div className="flex items-center gap-4 text-zinc-400">
-                  <MapPin size={18} />
-                  <span className="text-sm font-medium">Remote / Global</span>
-                </div>
-                <div className="flex items-center gap-4 text-zinc-400">
-                  <Calendar size={18} />
-                  <span className="text-sm font-medium">Mon — Fri, 9am — 6pm</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="text-zinc-500 text-[10px] font-bold uppercase tracking-[0.2em]">Follow My Process</h3>
-              <div className="flex gap-3">
-                {[
-                  { icon: <Github size={20} />, label: 'GitHub', link: 'https://github.com/harshabacham' },
-                  { icon: <Linkedin size={20} />, label: 'LinkedIn', link: 'https://www.linkedin.com/in/harsha-bacham' },
-                  { icon: <MessageSquare size={20} />, label: 'Twitter', link: '#' }
-                ].map((social) => (
-                  <a key={social.label} href={social.link} target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-2xl glass border border-white/5 flex items-center justify-center text-zinc-500 hover:text-white hover:border-white/20 transition-all">
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Right: Modern Form */}
-        <div className="lg:col-span-8">
-          <div className="glass p-8 md:p-16 rounded-[3.5rem] border border-white/5 relative overflow-hidden">
-            {/* Background Glow */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-white/[0.02] blur-[120px] rounded-full -mr-48 -mt-48 pointer-events-none"></div>
-
-            <form onSubmit={handleSubmit} className="space-y-12 relative z-10">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Name */}
-                <div className="space-y-3">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 ml-1">Full Name</label>
-                  <input 
-                    name="name"
-                    type="text" 
-                    value={formState.name}
-                    onChange={handleChange}
-                    onBlur={() => handleBlur('name')}
-                    placeholder="Enter your name"
-                    className={getInputClass('name')}
-                  />
-                  {touched.name && errors.name && <p className="text-[10px] text-red-500 uppercase tracking-widest mt-2 ml-1">{errors.name}</p>}
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          
+          {/* Left Column: Direct Address Links */}
+          <div className="lg:col-span-4 space-y-12">
+            <ScrollReveal direction="up" delay={100}>
+              <div className="space-y-10">
                 
-                {/* Email */}
-                <div className="space-y-3">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 ml-1">Email Address</label>
-                  <input 
-                    name="email"
-                    type="email" 
-                    value={formState.email}
-                    onChange={handleChange}
-                    onBlur={() => handleBlur('email')}
-                    placeholder="email@example.com"
-                    className={getInputClass('email')}
-                  />
-                  {touched.email && errors.email && <p className="text-[10px] text-red-500 uppercase tracking-widest mt-2 ml-1">{errors.email}</p>}
+                {/* Active Availability */}
+                <div className="flex items-center gap-3 px-4 py-2.5 bg-white dark:bg-neutral-900 border border-black/5 dark:border-white/10 rounded-2xl w-fit shadow-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-600 font-bold">Active Workspace</span>
                 </div>
-              </div>
 
-              {/* Project Type Selector */}
-              <div className="space-y-6">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 ml-1">I'm interested in...</label>
-                <div className="flex flex-wrap gap-3">
-                  {projectTypes.map((type) => (
-                    <button
-                      key={type}
-                      type="button"
-                      onClick={() => selectProjectType(type)}
-                      className={`px-6 py-3 rounded-xl text-xs font-bold transition-all duration-300 border ${
-                        formState.projectType === type 
-                        ? 'bg-white text-black border-white' 
-                        : 'bg-white/5 text-zinc-400 border-white/5 hover:border-white/10'
-                      }`}
+                {/* Email Direct Card */}
+                <div className="space-y-6">
+                  <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-500 uppercase tracking-widest block font-bold">[ ELECTRONIC INBOX ]</span>
+                  
+                  <SpotlightCard className="bg-white dark:bg-neutral-900 rounded-3xl border border-black/5 dark:border-white/10 overflow-hidden shadow-sm" glowColor="rgba(255, 90, 54, 0.08)">
+                    <a 
+                      href="mailto:bachamharsha4091@gmail.com" 
+                      className="group block p-6 transition-all duration-500"
                     >
-                      {type}
-                    </button>
-                  ))}
+                      <div className="flex items-start justify-between">
+                        <div className="space-y-3">
+                          <Mail size={16} className="text-neutral-400 group-hover:text-[#FF5A36] transition-colors" />
+                          <p className="text-base font-outfit font-extrabold uppercase text-neutral-900 dark:text-[#FAF9F6] break-all leading-tight">
+                            bachamharsha4091<br />@gmail.com
+                          </p>
+                          <p className="text-[9px] font-mono text-neutral-400 dark:text-neutral-500 uppercase font-bold">Response &lt; 24h</p>
+                        </div>
+                      </div>
+                    </a>
+                  </SpotlightCard>
+
+                  {/* Metadata Indicators */}
+                  <SpotlightCard className="p-6 bg-white dark:bg-neutral-900 border border-black/5 dark:border-white/10 rounded-3xl space-y-4 shadow-sm" glowColor="rgba(255, 90, 54, 0.08)">
+                    <div className="flex items-center gap-3 text-neutral-500 dark:text-neutral-400 text-xs">
+                      <MapPin size={14} className="text-[#FF5A36]" />
+                      <span className="font-mono font-bold text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Global Integration</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-neutral-500 dark:text-neutral-400 text-xs">
+                      <Calendar size={14} className="text-[#FF5A36]" />
+                      <span className="font-mono font-bold text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Mon — Fri, 9am — 6pm IST</span>
+                    </div>
+                  </SpotlightCard>
                 </div>
-              </div>
 
-              {/* Message */}
-              <div className="space-y-3">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 ml-1">Tell me about the project</label>
-                <textarea 
-                  name="message"
-                  rows={6}
-                  value={formState.message}
-                  onChange={handleChange}
-                  onBlur={() => handleBlur('message')}
-                  placeholder="Goals, timeline, and any specific requirements..."
-                  className={`${getInputClass('message')} resize-none`}
-                ></textarea>
-                {touched.message && errors.message && <p className="text-[10px] text-red-500 uppercase tracking-widest mt-2 ml-1">{errors.message}</p>}
-              </div>
-
-              {/* Submit Button */}
-              <button 
-                type="submit" 
-                disabled={isSubmitting}
-                className={`group relative w-full py-6 rounded-2xl font-bold tracking-widest uppercase text-xs overflow-hidden transition-all duration-500 ${
-                  isSubmitting ? 'bg-zinc-800 text-zinc-500' : 'bg-white text-black hover:scale-[1.01] active:scale-[0.98]'
-                }`}
-              >
-                <span className={`flex items-center justify-center gap-3 ${isSubmitting ? 'opacity-0' : 'opacity-100'} transition-opacity`}>
-                  Send Inquiry <Send size={16} />
-                </span>
-                {isSubmitting && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-5 h-5 border-2 border-zinc-600 border-t-white rounded-full animate-spin"></div>
+                {/* Follow Protocols */}
+                <div className="space-y-4">
+                  <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-500 uppercase tracking-widest block font-bold">[ EXTERNAL CONNECTIONS ]</span>
+                  <div className="flex gap-2">
+                    {[
+                      { icon: <Github size={16} />, label: 'GitHub', link: 'https://github.com/harshabacham' },
+                      { icon: <Linkedin size={16} />, label: 'LinkedIn', link: 'https://www.linkedin.com/in/harsha-bacham' },
+                    ].map((social) => (
+                      <a 
+                        key={social.label} 
+                        href={social.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="w-12 h-12 rounded-2xl bg-white dark:bg-neutral-900 border border-black/5 dark:border-white/10 flex items-center justify-center text-neutral-400 dark:text-neutral-500 hover:text-black dark:hover:text-white hover:border-black/10 dark:hover:border-white/20 transition-all shadow-sm"
+                        title={social.label}
+                      >
+                        {social.icon}
+                      </a>
+                    ))}
                   </div>
-                )}
-              </button>
-            </form>
+                </div>
+
+              </div>
+            </ScrollReveal>
           </div>
+
+          {/* Right Column: High-End Interactive Form Card */}
+          <div className="lg:col-span-8">
+            <ScrollReveal direction="up" delay={200}>
+              <SpotlightCard 
+                className="bg-white dark:bg-neutral-900 p-8 md:p-12 rounded-[2.5rem] border border-black/5 dark:border-white/10 relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.03)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
+                glowColor="rgba(255, 90, 54, 0.08)"
+              >
+                <div className="absolute top-0 right-0 w-80 h-80 bg-[#FF5A36]/[0.01] blur-3xl rounded-full pointer-events-none"></div>
+
+                <AnimatePresence mode="wait">
+                  {submitted ? (
+                    /* Elegant success screen */
+                    <motion.div 
+                      key="success"
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="py-16 text-center space-y-6 relative z-10"
+                    >
+                      <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto">
+                        <CheckCircle size={32} className="text-emerald-500" />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <span className="text-[9px] font-mono text-emerald-500 uppercase tracking-widest block font-bold">ROUTING COMPLETE</span>
+                        <h3 className="text-2xl font-outfit font-extrabold uppercase tracking-tight text-neutral-900 dark:text-[#FAF9F6]">Inquiry Reconciled</h3>
+                        <p className="font-instrument text-xl text-neutral-600 dark:text-neutral-300 italic max-w-md mx-auto">
+                          "Your project parameters have been securely stored. I will personally audit and follow up on your concept within 24 hours."
+                        </p>
+                      </div>
+
+                      <button 
+                        onClick={() => setSubmitted(false)}
+                        className="px-6 py-3.5 bg-neutral-900 dark:bg-neutral-800 text-white font-outfit font-bold uppercase text-[10px] tracking-wider rounded-xl hover:bg-[#FF5A36] dark:hover:bg-[#FF5A36] transition-all mt-4 shadow-md shadow-black/10"
+                      >
+                        Draft Another Concept
+                      </button>
+                    </motion.div>
+                  ) : (
+                    /* Contact Form */
+                    <form onSubmit={handleSubmit} className="space-y-10 relative z-10">
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {/* Name Input */}
+                        <div className="space-y-2">
+                          <label className="text-[8px] font-mono uppercase tracking-wider text-neutral-400 dark:text-neutral-500 ml-1 font-bold">CLIENT NAME // IDENTITY</label>
+                          <input 
+                            name="name"
+                            type="text" 
+                            value={formState.name}
+                            onChange={handleChange}
+                            onBlur={() => handleBlur('name')}
+                            placeholder="e.g. Alexis Drake"
+                            className={getInputClass('name')}
+                          />
+                          {touched.name && errors.name && (
+                            <p className="text-[8px] font-mono text-red-500 uppercase tracking-widest mt-1 ml-1 font-bold">{errors.name}</p>
+                          )}
+                        </div>
+                        
+                        {/* Email Input */}
+                        <div className="space-y-2">
+                          <label className="text-[8px] font-mono uppercase tracking-wider text-neutral-400 dark:text-neutral-500 ml-1 font-bold">CONTACT EMAIL // LINK</label>
+                          <input 
+                            name="email"
+                            type="email" 
+                            value={formState.email}
+                            onChange={handleChange}
+                            onBlur={() => handleBlur('email')}
+                            placeholder="e.g. alexis@studio.co"
+                            className={getInputClass('email')}
+                          />
+                          {touched.email && errors.email && (
+                            <p className="text-[8px] font-mono text-red-500 uppercase tracking-widest mt-1 ml-1 font-bold">{errors.email}</p>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Project Segment Selection */}
+                      <div className="space-y-4">
+                        <label className="text-[8px] font-mono uppercase tracking-wider text-neutral-400 dark:text-neutral-500 ml-1 font-bold">PROJECT SEGMENT // SYSTEM VECTOR</label>
+                        <div className="flex flex-wrap gap-2">
+                          {projectTypes.map((type) => (
+                            <button
+                              key={type}
+                              type="button"
+                              onClick={() => selectProjectType(type)}
+                              className={`px-5 py-3 rounded-xl text-[10px] font-mono uppercase tracking-widest transition-all duration-300 border ${
+                                formState.projectType === type 
+                                  ? 'bg-[#111111] dark:bg-neutral-800 text-white border-[#111111] dark:border-white/10 font-bold shadow-md shadow-black/10' 
+                                  : 'bg-neutral-50 dark:bg-neutral-900 text-neutral-400 dark:text-neutral-500 border-black/5 dark:border-white/10 hover:border-black/10 dark:hover:border-white/20 hover:text-black dark:hover:text-white'
+                              }`}
+                            >
+                              {type}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Project brief text */}
+                      <div className="space-y-2">
+                        <label className="text-[8px] font-mono uppercase tracking-wider text-neutral-400 dark:text-neutral-500 ml-1 font-bold">BRIEF CONCEPT OUTLINE</label>
+                        <textarea 
+                          name="message"
+                          rows={5}
+                          value={formState.message}
+                          onChange={handleChange}
+                          onBlur={() => handleBlur('message')}
+                          placeholder="Parameters, core layout goals, required integrations..."
+                          className={`${getInputClass('message')} resize-none`}
+                        ></textarea>
+                        {touched.message && errors.message && (
+                          <p className="text-[8px] font-mono text-red-500 uppercase tracking-widest mt-1 ml-1 font-bold">{errors.message}</p>
+                        )}
+                      </div>
+
+                      {/* Status row info */}
+                      <div className="flex items-center gap-2.5 text-[9px] font-mono text-neutral-400 uppercase font-bold">
+                        <Terminal size={12} className="text-[#FF5A36]" />
+                        <span>INTEGRATED PROTOCOLS SECURE</span>
+                      </div>
+
+                      {/* Submit */}
+                      <ShinyButton 
+                        type="submit" 
+                        disabled={isSubmitting}
+                        className={`w-full py-5 rounded-xl font-outfit font-extrabold uppercase text-[10px] tracking-widest overflow-hidden transition-all duration-300 ${
+                          isSubmitting ? '!bg-neutral-100 !text-neutral-400 cursor-not-allowed' : ''
+                        }`}
+                      >
+                        <span className={`flex items-center justify-center gap-2.5 ${isSubmitting ? 'opacity-0' : 'opacity-100'} transition-opacity`}>
+                          Dispatch Parameters
+                        </span>
+                        {isSubmitting && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <Wave className="w-6 h-6 text-neutral-800 dark:text-white" />
+                          </div>
+                        )}
+                      </ShinyButton>
+
+                    </form>
+                  )}
+                </AnimatePresence>
+
+              </SpotlightCard>
+            </ScrollReveal>
+          </div>
+
         </div>
+
       </div>
     </div>
   );

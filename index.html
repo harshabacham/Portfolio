@@ -6,33 +6,184 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Designer & Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              outfit: ['"Outfit"', 'sans-serif'],
+              instrument: ['"Instrument Serif"', 'serif'],
+              italiana: ['"Italiana"', 'serif'],
+              cormorant: ['"Cormorant Garamond"', 'serif'],
+              syne: ['"Syne"', 'sans-serif'],
+              space: ['"Space Grotesk"', 'sans-serif'],
+              mono: ['"JetBrains Mono"', 'monospace'],
+              signature: ['"Rock Salt"', 'cursive'],
+            }
+          }
+        }
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital,wght@0,400;1,400&family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Rock+Salt&family=Pinyon+Script&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #050505;
-            --accent: #ffffff;
-            --accent-muted: #a1a1aa;
+            --bg: #FAF9F6;
+            --accent: #111111;
+            --accent-muted: #86868b;
+            --orange: #FF5A36;
+        }
+        html.dark {
+            --bg: #0A0A0A;
+            --accent: #FAF9F6;
+            --accent-muted: #8E8E93;
         }
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg);
-            color: #ffffff;
+            color: var(--accent);
             scroll-behavior: smooth;
             overflow-x: hidden;
+            letter-spacing: -0.015em;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
         h1, h2, h3, h4 {
             font-family: 'Outfit', sans-serif;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.025em;
+            color: var(--accent);
+            transition: color 0.4s ease;
         }
         .serif {
             font-family: 'Instrument Serif', serif;
         }
+        .font-syne {
+            font-family: 'Syne', sans-serif;
+        }
+        .font-cormorant {
+            font-family: 'Instrument Serif', serif;
+        }
+        .font-instrument {
+            font-family: 'Instrument Serif', serif;
+        }
+        .font-outfit {
+            font-family: 'Outfit', sans-serif;
+        }
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.03);
+        }
+        html.dark .text-glow {
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.03);
+        }
+        .text-glow-orange {
+            text-shadow: 0 0 15px rgba(255, 106, 0, 0.15);
+        }
         .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(24px) saturate(160%);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.03), 0 1px 1px 0 rgba(0, 0, 0, 0.01);
+            transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        html.dark .glass {
+            background: rgba(15, 15, 15, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.3), 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+        }
+        .bg-grid {
+            background-size: 60px 60px;
+            background-image: 
+                linear-gradient(to right, rgba(0, 0, 0, 0.012) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.012) 1px, transparent 1px);
+            transition: background-image 0.4s ease;
+        }
+        html.dark .bg-grid {
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+        .bg-dots {
+            background-size: 32px 32px;
+            background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+            transition: background-image 0.4s ease;
+        }
+        html.dark .bg-dots {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+        }
+        .glow-card {
+            position: relative;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.02);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        html.dark .glow-card {
+            background: #111111;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.3);
+        }
+        .glow-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(to bottom right, rgba(255, 106, 0, 0.15), transparent 60%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .glow-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.06);
+            border-color: rgba(0, 0, 0, 0.08);
+        }
+        html.dark .glow-card:hover {
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        .glow-card:hover::after {
+            opacity: 1;
+        }
+        .glow-card-emerald::after {
+            background: linear-gradient(to bottom right, rgba(16, 185, 129, 0.15), transparent 60%);
+        }
+        .hover-lift {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px) scale(1.005);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.06);
+            border-color: rgba(0, 0, 0, 0.08) !important;
+        }
+        html.dark .hover-lift:hover {
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+        .animate-marquee {
+            display: inline-flex;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+        }
+        .animate-marquee-reverse {
+            display: inline-flex;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite reverse;
         }
         .text-gradient {
             /* High visibility white color */
@@ -56,10 +207,31 @@
         .animate-bounce-slow {
             animation: bounce-slow 4s infinite ease-in-out;
         }
+        @keyframes border-beam {
+            100% {
+                offset-distance: 100%;
+            }
+        }
+        .animate-border-beam {
+            animation: border-beam var(--duration) linear infinite;
+            animation-delay: var(--delay);
+        }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #444; }
+        @media (pointer: fine) {
+            body.custom-cursor-active,
+            body.custom-cursor-active a,
+            body.custom-cursor-active button,
+            body.custom-cursor-active [role="button"],
+            body.custom-cursor-active .cursor-pointer,
+            body.custom-cursor-active input,
+            body.custom-cursor-active textarea,
+            body.custom-cursor-active select {
+                cursor: none !important;
+            }
+        }
     </style>
 <script type="importmap">
 {

@@ -1,7 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { GRAPHIC_DESIGN_WORKS } from '../data/projects';
-import { X, Maximize2 } from 'lucide-react';
+import { X, Maximize2, SlidersHorizontal } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import ScrollReveal from '../components/ScrollReveal';
 
 const GraphicDesign: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -11,100 +12,130 @@ const GraphicDesign: React.FC = () => {
     setIsMounted(true);
   }, []);
 
-  // Premium easing function for ultra-smooth transitions
-  const premiumEase = "transition-all duration-[700ms] ease-[cubic-bezier(0.23,1,0.32,1)]";
-
   return (
-    <div className="min-h-screen bg-[#050505] selection:bg-white selection:text-black">
-      {/* Dynamic Header Section */}
-      <div className="max-w-[1600px] mx-auto px-6 md:px-12 pt-40 pb-24">
-        <header className={`flex flex-col md:flex-row items-baseline justify-between gap-12 border-b border-white/5 pb-16 transform transition-all duration-1000 ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="space-y-6">
-            <div className="flex items-center gap-3 text-zinc-500 uppercase tracking-[0.3em] text-[10px] font-bold">
-              <span className="w-8 h-[1px] bg-zinc-800"></span> Works / 01
-            </div>
-            <h1 className="text-7xl md:text-[8vw] font-bold tracking-tighter leading-[0.75] text-white">
-              VISUAL <br />
-              <span className="serif italic font-normal text-zinc-400">Expression.</span>
-            </h1>
-          </div>
-          <div className="max-w-sm">
-            <p className="text-lg text-zinc-500 font-light leading-relaxed italic serif">
-              "Design is the bridge between functionality and emotion." I focus on creating visual stories that resonate deeply and endure.
-            </p>
-          </div>
-        </header>
-      </div>
+    <div className="pb-40 bg-[#FAF9F6] dark:bg-[#0A0A0A] text-[#111111] dark:text-[#FAF9F6] transition-colors duration-500 selection:bg-black selection:text-white dark:selection:bg-[#FAF9F6] dark:selection:text-black min-h-screen relative overflow-hidden font-inter">
+      
+      {/* Background Grid & Dots */}
+      <div className="absolute inset-0 bg-dots opacity-[0.35] pointer-events-none z-0"></div>
+      <div className="absolute inset-0 bg-grid opacity-[0.08] pointer-events-none z-0"></div>
+      
+      {/* Accent soft Clay orb */}
+      <div className="absolute top-[20%] right-[10%] w-[600px] h-[600px] bg-[#FF5A36]/[0.02] rounded-full blur-[150px] pointer-events-none animate-bounce-slow"></div>
 
-      {/* Advanced Masonry Grid */}
-      <div className="max-w-[1600px] mx-auto px-6 md:px-12 pb-64">
-        <div className={`columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-8 space-y-8 transition-all duration-1000 delay-300 ${isMounted ? 'opacity-100' : 'opacity-0'}`}>
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 pt-32 pb-16 relative z-10">
+        
+        {/* Page Header */}
+        <ScrollReveal direction="up" delay={50}>
+          <header className="mb-24 flex flex-col lg:flex-row lg:items-end justify-between gap-12 border-b border-black/[0.04] dark:border-white/[0.06] pb-16">
+            <div className="max-w-3xl space-y-5">
+              <div className="flex items-center gap-3 text-neutral-400 text-[9px] font-mono uppercase tracking-[0.25em] font-bold">
+                <span className="w-8 h-[1px] bg-neutral-300 dark:bg-neutral-800"></span> 04 // GRAPHIC GALLERY
+              </div>
+              <h1 className="text-5xl md:text-[6.5vw] font-outfit font-extrabold tracking-tighter leading-[0.88] uppercase text-neutral-900 dark:text-neutral-50">
+                VISUAL <span className="font-signature font-normal text-[#FF6A00] tracking-normal text-[6.5vw] md:text-[7vw] normal-case">composition</span>
+              </h1>
+              <p className="font-outfit text-lg md:text-xl text-neutral-500 dark:text-neutral-400 font-light leading-relaxed max-w-2xl">
+                Form, symmetry, and typography paired to express powerful brand concepts and visual statements.
+              </p>
+            </div>
+            
+            {/* Catalog Info Badge */}
+            <div className="flex items-center gap-3 px-4 py-2.5 bg-white dark:bg-neutral-900 border border-black/5 dark:border-white/10 rounded-2xl lg:mb-2 text-neutral-500 dark:text-neutral-400 shadow-sm">
+              <SlidersHorizontal size={13} className="text-[#FF5A36]" />
+              <span className="text-[9px] font-mono uppercase tracking-widest font-bold">{GRAPHIC_DESIGN_WORKS.length} SPECIMEN PLATES</span>
+            </div>
+          </header>
+        </ScrollReveal>
+
+        {/* Pinterest Style Masonry Grid */}
+        <div className={`columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-8 space-y-8 transition-all duration-1000 ${isMounted ? 'opacity-100' : 'opacity-0'}`}>
           {GRAPHIC_DESIGN_WORKS.map((work, index) => (
             <div 
               key={work.id} 
-              className={`break-inside-avoid group cursor-pointer relative overflow-hidden rounded-2xl bg-zinc-900 border border-white/5 
-                ${premiumEase} 
-                hover:scale-[1.02] 
-                hover:border-white/20 
-                hover:shadow-[0_40px_80px_rgba(0,0,0,0.7),0_0_25px_rgba(255,255,255,0.04)]
-                z-0 hover:z-10`} 
               onClick={() => setSelectedImage(work.image)}
-              style={{ transitionDelay: `${index * 20}ms` }}
+              className="break-inside-avoid group cursor-pointer relative overflow-hidden rounded-[2rem] bg-white dark:bg-neutral-900 border border-black/5 dark:border-white/10 p-2 transition-all duration-500 hover:scale-[1.01] hover:border-black/10 dark:hover:border-white/20 shadow-[0_15px_40px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.04)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
             >
-              {/* Image Layer - Optimized for 100% Color Originality */}
-              <div className="relative overflow-hidden aspect-auto rounded-2xl">
+              <div className="relative overflow-hidden rounded-[1.6rem]">
                 <img 
                   src={work.image} 
                   alt={work.title} 
                   loading="lazy"
-                  className={`w-full h-auto object-cover ${premiumEase} group-hover:scale-[1.04] opacity-100 block`}
+                  className="w-full h-auto object-cover transition-all duration-[1s] group-hover:scale-[1.015] opacity-100 block"
                 />
                 
-                {/* Interaction Indicator - Minimal and non-obtrusive */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center pointer-events-none">
-                  <div className="p-5 bg-white/10 backdrop-blur-2xl rounded-full border border-white/20 transform scale-50 group-hover:scale-100 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] shadow-2xl">
-                    <Maximize2 size={24} className="text-white" />
+                {/* Floating details overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6 z-10">
+                  
+                  <div className="space-y-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                    <span className="text-[8px] font-mono text-[#FF5A36] font-bold uppercase tracking-widest block">
+                      PLATE // 0{index + 1}
+                    </span>
+                    <h3 className="text-base font-outfit font-extrabold uppercase text-white leading-tight tracking-wide">
+                      {work.title}
+                    </h3>
+                    <p className="font-instrument text-xs text-neutral-300 italic">
+                      {work.medium}
+                    </p>
+                  </div>
+
+                  {/* Zoom Badge */}
+                  <div className="absolute top-4 right-4 p-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    <Maximize2 size={12} className="text-white" />
                   </div>
                 </div>
 
-                {/* Internal Glow Effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none shadow-[inset_0_0_40px_rgba(255,255,255,0.03)]"></div>
+                {/* Aesthetic Corner Guidemarks */}
+                <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-white/20 opacity-0 group-hover:opacity-100 transition-all"></div>
+                <div className="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-white/20 opacity-0 group-hover:opacity-100 transition-all"></div>
               </div>
             </div>
           ))}
         </div>
+
       </div>
 
-      {/* Immersive Lightbox Experience */}
-      {selectedImage && (
-        <div 
-          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-3xl flex items-center justify-center p-4 md:p-12 cursor-zoom-out animate-in fade-in duration-500"
-          onClick={() => setSelectedImage(null)}
-        >
-          {/* Close Button */}
-          <button className="fixed top-8 right-8 z-[110] p-4 text-white/40 hover:text-white transition-all hover:scale-110 hover:rotate-90">
-            <X size={36} strokeWidth={1} />
-          </button>
-          
-          <div className="relative w-full h-full flex items-center justify-center">
-            <img 
-              src={selectedImage} 
-              alt="Detailed View" 
-              className="max-w-full max-h-full object-contain rounded-sm animate-in zoom-in-95 duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] shadow-[0_0_100px_rgba(0,0,0,1)]"
-            />
-          </div>
-        </div>
-      )}
+      {/* Lightbox Preview */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[100] bg-[#FAF9F6]/98 dark:bg-[#0A0A0C]/98 backdrop-blur-3xl flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
+            onClick={() => setSelectedImage(null)}
+          >
+            {/* Close Button */}
+            <button className="fixed top-8 right-8 z-[110] p-4 text-neutral-400 hover:text-black dark:hover:text-white transition-all hover:scale-110">
+              <X size={28} strokeWidth={1.5} />
+            </button>
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full h-full flex items-center justify-center"
+            >
+              <img 
+                src={selectedImage} 
+                alt="High-fidelity visual composition detailed preview" 
+                className="max-w-full max-h-full object-contain rounded-3xl shadow-[0_30px_70px_rgba(0,0,0,0.06)] border border-black/5 dark:border-white/10"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* Minimal Footer */}
-      <div className="max-w-[1600px] mx-auto px-12 py-24 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-zinc-600 font-mono text-[10px] uppercase tracking-[0.4em]">
-        <span className="hover:text-zinc-400 transition-colors cursor-default">© PORTFOLIO ARCHIVE 2025</span>
+      {/* Footer Row */}
+      <div className="max-w-[1600px] mx-auto px-12 py-24 border-t border-black/[0.04] dark:border-white/[0.06] flex flex-col md:flex-row justify-between items-center gap-8 text-neutral-400 font-mono text-[9px] uppercase tracking-[0.4em] relative z-10 font-bold">
+        <span>© HARSHA BACHAM GRAPHIC ARCHIVES</span>
         <div className="flex gap-10">
-          <span className="hover:text-white cursor-pointer transition-all hover:-translate-y-0.5">Instagram</span>
-          <span className="hover:text-white cursor-pointer transition-all hover:-translate-y-0.5">Behance</span>
-          <span className="hover:text-white cursor-pointer transition-all hover:-translate-y-0.5">Linkedin</span>
+          <a href="https://github.com/harshabacham" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white transition-colors">GitHub</a>
+          <a href="https://www.linkedin.com/in/harsha-bacham" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white transition-colors">LinkedIn</a>
         </div>
       </div>
+
     </div>
   );
 };

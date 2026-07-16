@@ -66,27 +66,15 @@ export const GRAPHIC_DESIGN_WORKS: GraphicProject[] = [
   { id: 'gd-59', title: 'Poster 59', description: '', image: getDriveUrl('1e_6CWMQFNqIoILEKNOKEVHM_z0scrYr-'), tools: [], medium: 'Editorial Design' },
   { id: 'gd-60', title: 'Poster 60', description: '', image: getDriveUrl('1kW6BLtnPqEbJITwZrY2x2a5g19tFkzFa'), tools: [], medium: 'Brand Identity' },
   { id: 'gd-61', title: 'Poster 61', description: '', image: getDriveUrl('1m4ZCkwgIfWgPWuzxATfsqaonnk3y3iMC'), tools: [], medium: 'Modern Poster' },
-  { id: 'gd-62', title: 'Poster 62', description: '', image: getDriveUrl('1pQY4upA4FpYbj5SBrqu_tt4LvkNAxsgi'), tools: [], medium: 'Visual Identity' },
-  { id: 'gd-63', title: 'Poster 63', description: '', image: getDriveUrl('1aGpDyGcjAFr7IbSN45M8JB_uqnFKnW1l'), tools: [], medium: 'Visual Design' },
-  { id: 'gd-64', title: 'Poster 64', description: '', image: getDriveUrl('1n2pWY6Ls5yL0_YCrdrHGYc7jEr2DFFFX'), tools: [], medium: 'Visual Design' },
+  { id: 'gd-62', title: 'Poster 62', description: '', image: getDriveUrl('1pQY4upA4FpYbj5SBrqu_tt4LvkNAxsgi'), tools: [], medium: 'Visual Identity' }
 ];
 
 export const WEB_DEVELOPMENT_WORKS: WebProject[] = [
-  {
-    id: 'web-1',
-    title: 'Alfalpu',
-    description: 'A cutting-edge platform designed for LPU Students, where students get all resourses of college.',
-    image: getScreenshotUrl('https://alfalpu.vercel.app/'),
-    tools: ['React', 'Tailwind CSS', 'Vercel'],
-    techStack: ['Next.js', 'Java Script', 'Flutter'],
-    role: 'App Developer',
-    link: 'https://alfalpu.vercel.app/',
-    github: '#'
-  },
+  
   {
     id: 'web-2',
-    title: 'ALFA Admin Access',
-    description: 'An useful site for admin to access the data of the ALFA app',
+    title: 'Grotesque Studio',
+    description: 'An experimental aesthetic-driven digital space pushing the boundaries of modern layout and branding.',
     image: getScreenshotUrl('https://grotesque-tan-kpj8mtaeyl.edgeone.app/'),
     tools: ['Vite', 'Three.js', 'EdgeOne'],
     techStack: ['TypeScript', 'WebGL', 'Edge Computing'],
@@ -97,7 +85,7 @@ export const WEB_DEVELOPMENT_WORKS: WebProject[] = [
   {
     id: 'web-3',
     title: 'Nalanda Foundation',
-    description: 'Built a foundation website aimed at creating awareness and digital presence for a non-profit organization. The platform highlights social impact, ongoing initiatives, and core values through a minimal and professional design.',
+    description: 'A comprehensive educational platform dedicated to preserving knowledge and fostering digital learning communities.',
     image: getScreenshotUrl('https://nalandafoundation-1617.vercel.app'),
     tools: ['React', 'Firebase', 'Vercel'],
     techStack: ['React Router', 'Node.js', 'Tailwind CSS'],
@@ -107,40 +95,84 @@ export const WEB_DEVELOPMENT_WORKS: WebProject[] = [
   },
   {
     id: 'web-4',
-    title: 'BrandMint Studios',
-    description: 'A cutting-edge platform designed for BrandMint Studios, where customers get all details of services with prices.',
-    image: getScreenshotUrl('https://brandmintstudios.vercel.app'),
-    tools: ['React', 'Tailwind CSS', 'Vercel'],
-    techStack: ['Next.js', 'Java Script', 'Flutter'],
-    role: 'Web Developer',
-    link: 'https://alfalpu.vercel.app/',
-    github: '#'
-  },
-  {
-    id: 'web-5',
     title: 'IPC Debugger',
-    description: 'Developed a web-based IPC Debugger to assist students in learning and debugging inter-process communication concepts through a simple and interactive interface.',
+    description: 'A robust utility tool for developers to debug and monitor inter-process communications in real-time.',
     image: getScreenshotUrl('https://ipcdebugger.netlify.app'),
     tools: ['Netlify', 'React', 'Monaco Editor'],
     techStack: ['Web Workers', 'Performance API', 'Redux'],
     role: 'Frontend',
     link: 'https://ipcdebugger.netlify.app',
     github: '#'
+  },
+  {
+    id: 'web-5',
+    title: 'Bacham Email Bot',
+    description: 'An intelligent email automation bot designed to streamline outreach and communication workflows with high-efficiency templates.',
+    image: getScreenshotUrl('https://bachamemailbot.vercel.app/'),
+    tools: ['React', 'Node.js', 'Vercel'],
+    techStack: ['Tailwind CSS', 'Gemini API', 'Nodemailer'],
+    role: 'Full Stack',
+    link: 'https://bachamemailbot.vercel.app/',
+    github: '#'
+  },
+  {
+    id: 'web-6',
+    title: 'Chess Online',
+    description: 'An interactive and engaging web-based chess game supporting real-time player vs. player matches with responsive boards.',
+    image: getScreenshotUrl('https://chessonlinegame.vercel.app/'),
+    tools: ['React', 'Socket.io', 'Vercel'],
+    techStack: ['Chess.js', 'Tailwind CSS', 'Framer Motion'],
+    role: 'Full Stack',
+    link: 'https://chessonlinegame.vercel.app/',
+    github: '#'
+  },
+  {
+    id: 'web-7',
+    title: 'LPU ALFA',
+    description: 'A comprehensive digital ecosystem and hub designed for the academic community at LPU to stay connected.',
+    image: getScreenshotUrl('https://lpualfa.vercel.app/'),
+    tools: ['React', 'Tailwind CSS', 'Vercel'],
+    techStack: ['Next.js', 'TypeScript', 'Framer Motion'],
+    role: 'Frontend',
+    link: 'https://lpualfa.vercel.app/',
+    github: '#'
+  },
+  {
+    id: 'web-8',
+    title: 'Ratan Tata Innovation Hub',
+    description: 'A visual and informative portal dedicated to showcasing pioneering initiatives, tech hub updates, and innovative startup ecosystems.',
+    image: getScreenshotUrl('https://ratan-tata-innovation-hub-seven.vercel.app/'),
+    tools: ['React', 'Framer Motion', 'Vercel'],
+    techStack: ['Tailwind CSS', 'TypeScript', 'Lucide Icons'],
+    role: 'Frontend',
+    link: 'https://ratan-tata-innovation-hub-seven.vercel.app/',
+    github: '#'
+  },
+  {
+    id: 'web-9',
+    title: 'Nawaf Edits',
+    description: 'A high-end creative portfolio designed to showcase premium video editing, custom motion graphics, and post-production masterpieces.',
+    image: getScreenshotUrl('https://nawafedits.vercel.app/'),
+    tools: ['Vite', 'Tailwind CSS', 'Vercel'],
+    techStack: ['React', 'Framer Motion', 'Lucide Icons'],
+    role: 'Frontend',
+    link: 'https://nawafedits.vercel.app/',
+    github: '#'
+  },
+  {
+    id: 'web-10',
+    title: 'Auraa PDF',
+    description: 'A streamlined, user-friendly utility platform for viewing, managing, merging, and optimizing PDF documents directly in the browser.',
+    image: getScreenshotUrl('https://auraapdf.vercel.app/'),
+    tools: ['React', 'PDF.js', 'Vercel'],
+    techStack: ['Tailwind CSS', 'TypeScript', 'Web APIs'],
+    role: 'Frontend',
+    link: 'https://auraapdf.vercel.app/',
+    github: '#'
   }
 ];
 
 export const APP_DEVELOPMENT_WORKS: AppProject[] = [
-
-  {
-    id: 'app-alfa',
-    title: 'ALFA',
-    description: 'A premium corporate-style mobile application designed for high-end storytelling and professional branding.',
-    image: 'https://i.postimg.cc/GtRrDGy8/App-Launch-Your-Story-in-Black-Bright-Green-Cool-Corporate-Style.jpg',
-    tools: ['Flutter', 'Dart', 'Firebase'],
-    platform: 'Android',
-    features: ['Custom Corporate Branding', 'Interactive Storytelling', 'Push Notifications', 'Real-time Analytics'],
-    link: 'https://alfalpu1.apk.com/'
-  },
   {
     id: 'app-alfa-admin',
     title: 'ALFA Admin App',
@@ -161,7 +193,16 @@ export const APP_DEVELOPMENT_WORKS: AppProject[] = [
     features: ['Community Forums', 'Direct Feedback', 'Voting System', 'Verified Profiles'],
     link: '#'
   },
-  
+  {
+    id: 'app-alfa',
+    title: 'ALFA',
+    description: 'A premium corporate-style mobile application designed for high-end storytelling and professional branding.',
+    image: 'https://i.postimg.cc/GtRrDGy8/App-Launch-Your-Story-in-Black-Bright-Green-Cool-Corporate-Style.jpg',
+    tools: ['Flutter', 'Dart', 'Firebase'],
+    platform: 'Android',
+    features: ['Custom Corporate Branding', 'Interactive Storytelling', 'Push Notifications', 'Real-time Analytics'],
+    link: 'https://alfalpu1.apk.com/'
+  }
 ];
 
 export const SKILLS: Skill[] = [

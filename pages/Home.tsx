@@ -1,177 +1,337 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Palette, Globe, Smartphone, Sparkles, User } from 'lucide-react';
-
-interface Role {
-  name: string;
-  color: string;
-}
-
-const Typewriter: React.FC<{ roles: Role[] }> = ({ roles }) => {
-  const [index, setIndex] = useState(0);
-  const [subIndex, setSubIndex] = useState(0);
-  const [reverse, setReverse] = useState(false);
-
-  useEffect(() => {
-    if (subIndex === roles[index].name.length + 1 && !reverse) {
-      const timeout = setTimeout(() => setReverse(true), 2500);
-      return () => clearTimeout(timeout);
-    }
-    if (subIndex === 0 && reverse) {
-      setReverse(false);
-      setIndex((prev) => (prev + 1) % roles.length);
-      return;
-    }
-    const timeout = setTimeout(() => {
-      setSubIndex((prev) => prev + (reverse ? -1 : 1));
-    }, reverse ? 40 : 80);
-    return () => clearTimeout(timeout);
-  }, [subIndex, index, reverse, roles]);
-
-  return (
-    <span className={`relative inline-block transition-colors duration-500 ${roles[index].color}`}>
-      {roles[index].name.substring(0, subIndex)}
-      <span className="inline-block w-[2px] h-[0.9em] bg-current ml-1 animate-pulse align-middle" />
-    </span>
-  );
-};
+import { motion } from 'motion/react';
+import { 
+  ArrowRight, Globe, Smartphone, Sparkles, Code, Cpu, 
+  Mail, ArrowUpRight, Terminal, Clock, Laptop, Star
+} from 'lucide-react';
+import ScrollReveal from '../components/ScrollReveal';
+import { SpotlightCard } from '../components/ui/SpotlightCard';
+import { ShinyButton } from '../components/ui/ShinyButton';
+import { InteractiveGridBackground } from '../components/ui/InteractiveGridBackground';
+import { BorderBeam } from '../components/ui/BorderBeam';
+import CurvedLoop from '../components/CurvedLoop';
 
 const Home: React.FC = () => {
-  const roles: Role[] = [
-    { name: 'GRAPHIC DESIGNER', color: 'text-orange-500' },
-    { name: 'WEB DEVELOPER', color: 'text-orange-500' },
-    { name: 'APP DEVELOPER', color: 'text-orange-500' }
-  ];
+  const [timeStr, setTimeStr] = useState('');
+
+  // Clock Update
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setTimeStr(now.toLocaleTimeString('en-US', { hour12: false }));
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Framer Motion Animation Variants for the Main Typographic Headline
+  const containerVariants = {
+    hidden: { opacity: 0, y: 12 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1.2,
+        ease: [0.16, 1, 0.3, 1],
+        staggerChildren: 0.04,
+        delayChildren: 0.15,
+      },
+    },
+  };
+
+  const letterVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 180, damping: 14 },
+    },
+  };
 
   return (
-    <div className="pb-32 px-6 overflow-hidden">
-      {/* Refined Hero Section - cleaner spacing and hierarchy */}
-      <section className="min-h-[90vh] flex items-center justify-center max-w-7xl mx-auto py-12 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div className="pb-40 min-h-screen bg-[#FAF9F6] dark:bg-[#0A0A0A] text-[#111111] dark:text-[#FAF9F6] transition-colors duration-500 selection:bg-black selection:text-white relative overflow-hidden font-inter">
+      
+      {/* 21st.dev Interactive Grid Background with Cursor Tracking Spotlight */}
+      <InteractiveGridBackground />
+      
+      {/* Pastel soft glowing layers */}
+      <div className="absolute top-[5%] left-[5%] w-[600px] h-[600px] bg-[#FF6A00]/[0.02] rounded-full blur-[150px] pointer-events-none animate-bounce-slow"></div>
+      <div className="absolute bottom-[20%] right-[5%] w-[600px] h-[600px] bg-neutral-900/[0.015] rounded-full blur-[160px] pointer-events-none"></div>
+
+      {/* Hero Block */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pt-32 md:pt-40 pb-16">
+        <div className="space-y-16">
           
-          {/* Left Side: Content */}
-          <div className="lg:col-span-7 space-y-8 order-2 lg:order-1 text-center lg:text-left">
-            <div className="flex items-center justify-center lg:justify-start gap-2 mb-2">
-              <span className="text-[10px] font-bold tracking-[0.3em] text-orange-500 uppercase">Personal Portfolio</span>
-              <span className="w-8 h-[1px] bg-zinc-800"></span>
+          {/* Main Title & Slogan Section */}
+          <div className="relative">
+            {/* 21st.dev Premium Interactive Slogan Badge with BorderBeam */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+              <motion.div 
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="relative group/badge cursor-pointer"
+              >
+                <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-white/95 dark:bg-neutral-900/95 border border-black/[0.04] dark:border-white/[0.08] rounded-full shadow-[0_2px_12px_rgba(0,0,0,0.01)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.4)] text-[10px] font-mono text-neutral-600 dark:text-neutral-400 transition-all duration-300 hover:scale-[1.01] hover:border-black/10 dark:hover:border-white/20 relative overflow-hidden">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF6A00] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF6A00]"></span>
+                  </span>
+                  <span className="font-extrabold text-neutral-900 dark:text-neutral-100 tracking-wider">CRAFT // V2.0</span>
+                  <span className="w-[1.5px] h-3 bg-black/10 dark:bg-white/15"></span>
+                  <span className="tracking-wide text-neutral-500 dark:text-neutral-400 group-hover/badge:text-[#FF6A00] transition-colors duration-300">
+                    EXPLORING INTUITIVE DESIGN SYSTEMS
+                  </span>
+                  <BorderBeam size={60} duration={5} colorFrom="#FF6A00" colorTo="#FF6A00" borderWidth={1} />
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+                className="flex items-center gap-4 text-[9px] font-mono text-neutral-500 uppercase tracking-[0.2em]"
+              >
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-neutral-100/50 dark:bg-neutral-900/50 rounded-lg border border-black/[0.02] dark:border-white/[0.04]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span className="font-bold text-neutral-700 dark:text-neutral-300">ONLINE PROTOCOL ACTIVE</span>
+                </div>
+                <div className="hidden sm:flex items-center gap-1.5 font-bold">
+                  <Clock size={11} className="text-[#FF6A00]" />
+                  <span>{timeStr || "00:00:00"} IST</span>
+                </div>
+              </motion.div>
             </div>
             
-            <div className="space-y-4">
-              <h2 className="text-zinc-500 text-sm md:text-base font-medium tracking-tight">
-                Designed & Developed by <span className="text-white border-b border-orange-500/50 pb-0.5">Harsha Bacham</span>
-              </h2>
-              <h1 className="text-[11vw] sm:text-[7vw] lg:text-[6.5vw] font-bold tracking-tighter leading-[0.95] text-white">
-                CREATIVE <br />
-                <Typewriter roles={roles} />
-              </h1>
-            </div>
-
-            <p className="max-w-xl text-zinc-400 text-lg md:text-xl font-light leading-relaxed mx-auto lg:mx-0">
-              I specialize in bridging the gap between <span className="text-zinc-200">visual artistry</span> and <span className="text-zinc-200">technical engineering</span> to build seamless digital experiences.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
-              <Link to="/contact" className="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-orange-500 hover:text-white transition-all duration-300 text-sm uppercase tracking-widest">
-                Get in touch
-              </Link>
-              <Link to="/web-development" className="px-8 py-4 glass border border-white/5 text-white font-bold rounded-full hover:border-white/20 transition-all duration-300 text-sm uppercase tracking-widest">
-                View Projects
-              </Link>
-            </div>
-          </div>
-
-          {/* Right Side: Portrait - Simplified presentation */}
-          <div className="lg:col-span-5 order-1 lg:order-2">
-            <div className="relative group mx-auto max-w-[400px] lg:max-w-none">
-              <div className="aspect-[1/1.2] rounded-3xl overflow-hidden bg-zinc-900 border border-white/5 relative z-10 shadow-2xl">
-                <img 
-                  src="https://i.postimg.cc/BnT6wZJm/Whats-App-Image-2025-09-16-at-2-06-41-PM.jpg" 
-                  alt="Harsha Bacham" 
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
-              </div>
+            {/* Massive Typographic Headline with Atmospheric Aura */}
+            <div className="relative group/title select-none py-2">
+              <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-[350px] h-[150px] bg-gradient-to-r from-[#FF6A00]/[0.025] to-[#059669]/[0.015] rounded-full blur-[80px] pointer-events-none group-hover/title:scale-[1.15] transition-transform duration-1000" />
               
-              {/* Background Glow */}
-              <div className="absolute -top-12 -right-12 w-64 h-64 bg-orange-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="space-y-4"
+              >
+                <h1 className="text-[11vw] md:text-[8vw] font-syne font-extrabold tracking-tighter leading-[0.80] uppercase relative flex flex-wrap items-baseline justify-center gap-x-4 md:gap-x-6">
+                  <span className="inline-flex select-none">
+                    {"HARSHA".split("").map((letter, i) => (
+                       <motion.span
+                         key={i}
+                         variants={letterVariants}
+                         className="inline-block text-[#FF6A00] transition-colors duration-200 cursor-pointer hover:text-neutral-950 dark:hover:text-white"
+                         whileHover={{ 
+                           y: -8,
+                           scale: 1.05,
+                           rotate: i % 2 === 0 ? 3 : -3,
+                           transition: { type: "spring", stiffness: 400, damping: 10 }
+                         }}
+                       >
+                         {letter}
+                       </motion.span>
+                    ))}
+                  </span>
+                  <span className="inline-flex select-none relative group/lastname ml-1 items-baseline">
+                    {"BACHAM".split("").map((letter, i) => (
+                      <motion.span
+                        key={i}
+                        variants={letterVariants}
+                        className="inline-block text-[#FF6A00] transition-colors duration-200 cursor-pointer hover:text-neutral-950 dark:hover:text-white"
+                        whileHover={{ 
+                          y: -8,
+                          scale: 1.05,
+                          rotate: i % 2 === 0 ? 3 : -3,
+                          transition: { type: "spring", stiffness: 400, damping: 10 }
+                        }}
+                      >
+                        {letter}
+                      </motion.span>
+                    ))}
+                    <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#FF6A00] ml-2 md:ml-3 animate-pulse shadow-[0_0_12px_rgba(255,106,0,0.6)]" />
+                  </span>
+                </h1>
+                
+                 {/* Secondary architectural row / High-Tech Metadata strip */}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 border-t border-black/[0.06] dark:border-white/[0.08] pt-6 mt-4">
+                  <div className="md:col-span-5 flex items-center gap-3">
+                    <span className="text-[4.5vw] sm:text-[2.2vw] md:text-[1.6vw] font-outfit font-black tracking-[0.06em] text-neutral-900 dark:text-neutral-100 uppercase">
+                      SYSTEM ARCHITECT
+                    </span>
+                    <span className="px-2 py-0.5 border border-emerald-500/20 bg-emerald-500/5 text-emerald-600 dark:text-emerald-400 text-[8px] font-mono font-extrabold rounded-md uppercase tracking-widest hidden sm:inline-block">
+                      ACTIVES
+                    </span>
+                  </div>
+                  <div className="md:col-span-7 flex flex-wrap items-center md:justify-end gap-2.5">
+                    <span className="font-mono text-[9px] text-neutral-500 dark:text-neutral-400 font-medium uppercase tracking-[0.16em] border border-black/[0.04] dark:border-white/[0.08] rounded-lg px-3.5 py-1.5 bg-white dark:bg-neutral-900 shadow-sm flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF6A00]" />
+                      LATENCY OPTIMIZED
+                    </span>
+                    <span className="font-mono text-[9px] text-neutral-500 dark:text-neutral-400 font-medium uppercase tracking-[0.16em] border border-black/[0.04] dark:border-white/[0.08] rounded-lg px-3.5 py-1.5 bg-white dark:bg-neutral-900 shadow-sm flex items-center gap-1.5">
+                      <Laptop size={11} className="text-[#FF6A00]" />
+                      REACT • FLUTTER Cores
+                    </span>
+                    <span className="font-mono text-[9px] text-neutral-400 dark:text-neutral-500 uppercase tracking-[0.16em] border border-black/[0.04] dark:border-white/[0.08] rounded-lg px-3.5 py-1.5 bg-neutral-100/40 dark:bg-neutral-900/40">
+                      UTC +05:30
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
             </div>
+          </div>
+
+          {/* Premium Redesigned Unified Showcase Card */}
+          <div className="pt-8 relative w-full">
+            <ScrollReveal direction="up" delay={150}>
+              <SpotlightCard className="p-6 md:p-8 lg:p-10 relative group/portrait" glowColor="rgba(255, 106, 0, 0.04)">
+                
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+                  
+                  {/* Portrait Column */}
+                  <div className="lg:col-span-4 flex flex-col justify-between space-y-6">
+                    {/* Photo frame with rounded corners and scale feedback */}
+                    <div className="relative aspect-square overflow-hidden rounded-[2rem] border border-black/[0.04] dark:border-white/[0.08] bg-neutral-50 dark:bg-neutral-900 shadow-[inset_0_2px_12px_rgba(0,0,0,0.02)]">
+                      <div className="absolute inset-0 bg-gradient-to-tr from-[#FF6A00]/5 via-transparent to-transparent opacity-0 group-hover/portrait:opacity-100 transition-opacity duration-700 z-10"></div>
+                      <img 
+                        src="https://i.postimg.cc/BnT6wZJm/Whats-App-Image-2025-09-16-at-2-06-41-PM.jpg" 
+                        alt="Harsha Bacham Portrait" 
+                        className="w-full h-full object-cover brightness-[0.97] contrast-[1.02] group-hover/portrait:scale-[1.03] transition-all duration-1000"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/90 via-neutral-950/20 to-transparent z-10"></div>
+                      
+                      {/* Access code or badge on bottom corner */}
+                      <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end z-20">
+                        <div>
+                          <span className="text-[7px] font-mono text-[#FF6A00] font-bold uppercase tracking-[0.25em] block mb-1">DESIGN & ENGINEERING</span>
+                          <h4 className="text-sm font-extrabold font-syne uppercase tracking-wider text-white">Harsha Bacham</h4>
+                        </div>
+                        <span className="px-2 py-1 bg-white/10 backdrop-blur-md border border-white/10 text-white font-mono text-[7px] uppercase tracking-widest rounded-md">
+                          SPEC.04
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Live Status Deck */}
+                    <div className="px-1.5 py-1 space-y-3 font-mono text-[9px] border-t border-black/[0.03] dark:border-white/[0.06] pt-4">
+                      <div className="flex justify-between items-center text-neutral-400 dark:text-neutral-500">
+                        <span>[ REGION ]</span>
+                        <span className="text-neutral-900 dark:text-neutral-100 font-bold uppercase tracking-wider">INDIA // EAST</span>
+                      </div>
+                      <div className="flex justify-between items-center text-neutral-400 dark:text-neutral-500">
+                        <span>[ STATUS ]</span>
+                        <span className="text-emerald-600 dark:text-emerald-400 font-bold uppercase flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                          ROUTING ACTIVE
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content & Action Column */}
+                  <div className="lg:col-span-8 flex flex-col justify-between py-1 space-y-8 lg:space-y-0">
+                    
+                    {/* Biography Header & Core Slogan */}
+                    <div className="space-y-6">
+                      <div className="flex justify-between items-center">
+                        <div className="text-[9px] font-mono text-neutral-400 uppercase tracking-[0.25em]">[ 01 // PROFESSIONAL SPECIMEN ]</div>
+                        <Sparkles size={11} className="text-[#FF6A00] animate-pulse" />
+                      </div>
+
+                      <div className="space-y-4">
+                        <h3 className="text-xl md:text-2xl font-syne font-extrabold text-neutral-950 dark:text-neutral-50 tracking-tight leading-snug">
+                          Architecting beautiful high-performance systems with flawless visual cadence.
+                        </h3>
+                        <p className="text-neutral-500 dark:text-neutral-400 text-xs md:text-sm leading-relaxed font-light max-w-3xl">
+                          Harsha Bacham operates at the intersection of robust backend telemetry and pristine client-side execution. By pairing absolute modular standards with fluid micro-interactions, he elevates typical workspaces into masterpieces of modern engineering.
+                        </p>
+                      </div>
+
+                      {/* High-End Design Pillars Grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 border-t border-black/[0.04] dark:border-white/[0.06]">
+                        
+                        <div className="p-4 rounded-2xl bg-neutral-50/50 dark:bg-neutral-900/40 border border-black/[0.03] dark:border-white/[0.06] space-y-2 hover:border-black/[0.08] dark:hover:border-white/[0.12] hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-all duration-300">
+                          <div className="flex justify-between items-center text-[9px] font-mono text-neutral-400">
+                            <span>[ 01 ]</span>
+                            <span className="text-[#FF6A00] font-bold">CORE</span>
+                          </div>
+                          <h4 className="text-[11px] font-bold font-outfit uppercase tracking-wider text-neutral-900 dark:text-[#FAF9F6]">SYSTEM ARCHITECTURE</h4>
+                          <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-light leading-relaxed">
+                            Low-latency compiler pipelines, structured native schemas, and mathematically robust state graphs.
+                          </p>
+                        </div>
+
+                        <div className="p-4 rounded-2xl bg-neutral-50/50 dark:bg-neutral-900/40 border border-black/[0.03] dark:border-white/[0.06] space-y-2 hover:border-black/[0.08] dark:hover:border-white/[0.12] hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-all duration-300">
+                          <div className="flex justify-between items-center text-[9px] font-mono text-neutral-400">
+                            <span>[ 02 ]</span>
+                            <span className="text-[#FF6A00] font-bold">CRAFT</span>
+                          </div>
+                          <h4 className="text-[11px] font-bold font-outfit uppercase tracking-wider text-neutral-900 dark:text-[#FAF9F6]">VISUAL PRECISION</h4>
+                          <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-light leading-relaxed">
+                            Bespoke grid structures, Swiss typography scales, and responsive micro-animations.
+                          </p>
+                        </div>
+
+                        <div className="p-4 rounded-2xl bg-neutral-50/50 dark:bg-neutral-900/40 border border-black/[0.03] dark:border-white/[0.06] space-y-2 hover:border-black/[0.08] dark:hover:border-white/[0.12] hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-all duration-300">
+                          <div className="flex justify-between items-center text-[9px] font-mono text-neutral-400">
+                            <span>[ 03 ]</span>
+                            <span className="text-[#FF6A00] font-bold">UTILITY</span>
+                          </div>
+                          <h4 className="text-[11px] font-bold font-outfit uppercase tracking-wider text-neutral-900 dark:text-[#FAF9F6]">COGNITIVE FLOW</h4>
+                          <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-light leading-relaxed">
+                            Intelligent workspace flows, responsive tactile layouts, and lightweight memory profiles.
+                          </p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    {/* Buttons Action Deck with ShinyButton Components */}
+                    <div className="flex flex-wrap items-center gap-4 pt-6 border-t border-black/[0.04] dark:border-white/[0.06]">
+                      <Link to="/contact">
+                        <ShinyButton>
+                          Initiate Inquiry <ArrowUpRight size={13} className="ml-1 inline-block transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </ShinyButton>
+                      </Link>
+                      <Link 
+                        to="/projects" 
+                        className="px-6 py-3.5 bg-white dark:bg-neutral-900 border border-black/5 dark:border-white/10 text-[#111111] dark:text-[#FAF9F6] font-outfit font-bold rounded-xl hover:border-black/10 dark:hover:border-white/20 hover:bg-neutral-50 dark:hover:bg-neutral-850 transition-all duration-300 text-[10px] uppercase tracking-wider shadow-[0_2px_8px_rgba(0,0,0,0.01)]"
+                      >
+                        Browse Creations
+                      </Link>
+                    </div>
+
+                  </div>
+                </div>
+              </SpotlightCard>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* Simplified Bento Grid - More balanced and less busy */}
-      <section className="max-w-7xl mx-auto space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-auto md:h-[400px]">
-          {/* About Card */}
-          <div className="glass rounded-3xl p-10 flex flex-col justify-between group relative overflow-hidden">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center mb-6">
-                <Sparkles size={18} className="text-orange-500" />
-              </div>
-              <h2 className="text-3xl font-bold mb-4 tracking-tight">The intersection of <br /> Design & Logic.</h2>
-              <p className="text-zinc-500 leading-relaxed max-w-sm">
-                Creating digital solutions that are as beautiful as they are functional. I handle everything from the first sketch to the final deployment.
-              </p>
-            </div>
-            <Link to="/about" className="inline-flex items-center text-xs font-bold uppercase tracking-widest gap-2 group-hover:gap-3 transition-all text-white mt-8">
-              My Story <ArrowRight size={14} className="text-orange-500" />
-            </Link>
-          </div>
-
-          {/* Web Card */}
-          <Link to="/web-development" className="glass rounded-3xl p-10 flex flex-col justify-between group border border-white/5 hover:border-orange-500/30 transition-all duration-500">
-            <div className="flex justify-between items-start">
-              <div className="w-12 h-12 rounded-xl bg-zinc-900 flex items-center justify-center border border-white/5 group-hover:bg-orange-500 group-hover:border-orange-500 transition-all duration-500">
-                <Globe size={24} className="text-zinc-400 group-hover:text-white" />
-              </div>
-              <ArrowRight size={20} className="text-zinc-800 group-hover:text-white transition-colors" />
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold mb-2">Web Engineering</h3>
-              <p className="text-zinc-500 text-sm">Full-stack applications with modern performance standards.</p>
-            </div>
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 h-auto md:h-[300px]">
-          {/* Apps Card */}
-          <Link to="/app-development" className="glass rounded-3xl p-10 flex flex-col justify-between group border border-white/5 hover:border-orange-500/30 transition-all duration-500">
-            <div className="w-12 h-12 rounded-xl bg-zinc-900 flex items-center justify-center border border-white/5 group-hover:bg-orange-500 group-hover:border-orange-500 transition-all duration-500">
-              <Smartphone size={24} className="text-zinc-400 group-hover:text-white" />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-2">App Development</h3>
-              <p className="text-zinc-500 text-xs">Crafting native mobile experiences using Flutter & React Native.</p>
-            </div>
-          </Link>
-
-          {/* Design Card */}
-          <Link to="/graphic-design" className="glass rounded-3xl p-10 flex flex-col justify-between group border border-white/5 hover:border-orange-500/30 transition-all duration-500">
-            <div className="w-12 h-12 rounded-xl bg-zinc-900 flex items-center justify-center border border-white/5 group-hover:bg-orange-500 group-hover:border-orange-500 transition-all duration-500">
-              <Palette size={24} className="text-zinc-400 group-hover:text-white" />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-2">Visual Arts</h3>
-              <p className="text-zinc-500 text-xs">Branding, UI/UX, and graphic compositions that tell a story.</p>
-            </div>
-          </Link>
-
-          {/* Contact Card */}
-          <Link to="/contact" className="glass rounded-3xl p-10 flex flex-col justify-center items-center group bg-orange-500/5 hover:bg-orange-500 transition-all duration-500 text-center">
-            <h3 className="text-2xl font-bold mb-2 group-hover:text-white">Have a project?</h3>
-            <p className="text-orange-500 text-sm font-bold group-hover:text-white/80">Let's work together <ArrowRight size={16} className="inline ml-1" /></p>
-          </Link>
-        </div>
+      {/* Beautiful Curved Loop Section */}
+      <section className="py-6 overflow-hidden z-20 relative w-full bg-transparent">
+        <CurvedLoop 
+          marqueeText="HIGH FIDELITY CODES ✦ PIXEL PERFECT LAYOUT ✦ MOBILE ARCHITECTURE ✦ FLUTTER CORES ✦ SYMMETRICAL BRANDING ✦ VECTOR GRAPHIC ART ✦ "
+          speed={0.8}
+          curveAmount={80}
+          direction="left"
+          interactive={true}
+          className="fill-[#FF6A00] font-outfit font-medium tracking-[0.25em]"
+        />
       </section>
 
-      {/* Cleaner Footer Tagline */}
-      <section className="py-32 max-w-4xl mx-auto text-center">
-        <div className="inline-block w-8 h-[1px] bg-orange-500/30 mb-8"></div>
-        <p className="text-zinc-400 text-xl md:text-2xl font-light italic serif leading-relaxed">
-          "The best digital products are built where empathy meets expertise. I strive to create tools that empower users through intuitive design and reliable code."
-        </p>
-      </section>
+      {/* Beautiful Editorial Quote Section */}
+      <ScrollReveal direction="up" delay={50}>
+        <section className="py-24 text-center max-w-4xl mx-auto px-6 border-t border-black/[0.04] dark:border-white/[0.06]">
+          <div className="inline-block w-8 h-[1.5px] bg-[#FF6A00] mb-6"></div>
+          <p className="font-instrument text-neutral-600 dark:text-neutral-300 text-2xl md:text-3xl font-light italic leading-relaxed">
+            "Design is not decoration. We architect logical systems, pair clean layouts, and orchestrate robust technologies into pristine digital artifacts."
+          </p>
+          <div className="mt-4 text-[9px] font-mono text-neutral-400 dark:text-neutral-500 uppercase tracking-[0.2em] font-bold">— HARSHA BACHAM PORTFOLIO</div>
+        </section>
+      </ScrollReveal>
+
     </div>
   );
 };
