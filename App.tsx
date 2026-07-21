@@ -2,6 +2,7 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'motion/react';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -56,10 +57,21 @@ const AppContent: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <ScrollToTop />
-      <AppContent />
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <Helmet defaultTitle="Portfolio | Designer & Developer" titleTemplate="%s | Portfolio">
+          <meta name="description" content="A curated digital catalog highlighting innovative graphic designs, advanced web development architectures, and polished mobile applications." />
+          <meta name="keywords" content="Portfolio, Graphic Design, Web Development, App Development, Harsha Bacham" />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content="Harsha Bacham | Designer & Developer Portfolio" />
+          <meta property="og:description" content="A curated digital catalog highlighting innovative graphic designs, advanced web development architectures, and polished mobile applications." />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Harsha Bacham | Designer & Developer Portfolio" />
+        </Helmet>
+        <ScrollToTop />
+        <AppContent />
+      </Router>
+    </HelmetProvider>
   );
 };
 

@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { WEB_DEVELOPMENT_WORKS } from '../data/projects';
 import { ExternalLink, Github, Code2, Sparkles, Monitor, Cpu } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import ScrollReveal from '../components/ScrollReveal';
+import { ImageWithSkeleton } from '../components/ui/ImageWithSkeleton';
 
 const WebDevelopment: React.FC = () => {
   const [filter, setFilter] = useState('All');
@@ -14,6 +16,12 @@ const WebDevelopment: React.FC = () => {
 
   return (
     <div className="pb-40 bg-[#FAF9F6] dark:bg-[#0A0A0A] text-[#111111] dark:text-[#FAF9F6] transition-colors duration-500 selection:bg-black selection:text-white dark:selection:bg-[#FAF9F6] dark:selection:text-black min-h-screen relative overflow-hidden font-inter">
+      <Helmet>
+        <title>Web Development | Portfolio Catalog</title>
+        <meta name="description" content="Browse high-fidelity web production systems, interactive layouts, and full stack web engineering by Harsha Bacham." />
+        <meta property="og:title" content="Web Development | Portfolio Catalog" />
+        <meta property="og:description" content="Browse high-fidelity web production systems, interactive layouts, and full stack web engineering by Harsha Bacham." />
+      </Helmet>
       
       {/* Background Grid & Dots */}
       <div className="absolute inset-0 bg-dots opacity-[0.35] pointer-events-none z-0"></div>
@@ -176,12 +184,13 @@ const WebDevelopment: React.FC = () => {
                           
                           {/* App viewport area */}
                           <div className="aspect-[16/10] relative overflow-hidden bg-neutral-50 dark:bg-neutral-900">
-                            <img 
+                            <ImageWithSkeleton 
                               src={project.image} 
                               alt={project.title} 
-                              className="w-full h-full object-cover object-top transition-all duration-[3s] ease-in-out group-hover/mockup:scale-[1.01] opacity-100"
+                              aspectRatio="aspect-[16/10]"
+                              className="w-full h-full object-cover object-top transition-all duration-[3s] ease-in-out group-hover/mockup:scale-[1.01]"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent z-20 pointer-events-none"></div>
                           </div>
 
                         </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { 
   WEB_DEVELOPMENT_WORKS, 
   APP_DEVELOPMENT_WORKS, 
@@ -20,6 +21,7 @@ import {
 import ScrollReveal from '../components/ScrollReveal';
 import { SpotlightCard } from '../components/ui/SpotlightCard';
 import { InteractiveGridBackground } from '../components/ui/InteractiveGridBackground';
+import { ImageWithSkeleton } from '../components/ui/ImageWithSkeleton';
 
 // Dynamic background gradients for web projects to match the requested premium style
 const WEB_BACKGROUND_GRADIENTS: Record<string, string> = {
@@ -92,6 +94,12 @@ const Projects: React.FC = () => {
 
   return (
     <div className="pb-40 bg-[#FAF9F6] dark:bg-[#0A0A0A] text-[#111111] dark:text-[#FAF9F6] transition-colors duration-500 selection:bg-black selection:text-white dark:selection:bg-[#FAF9F6] dark:selection:text-black min-h-screen relative overflow-hidden font-inter">
+      <Helmet>
+        <title>Projects | Catalog Archive</title>
+        <meta name="description" content="Explore an archive of innovative web apps, high-performance software, and outstanding graphic designs by Harsha Bacham." />
+        <meta property="og:title" content="Projects | Catalog Archive" />
+        <meta property="og:description" content="Explore an archive of innovative web apps, high-performance software, and outstanding graphic designs by Harsha Bacham." />
+      </Helmet>
       {/* 21st.dev Interactive Grid Background with Cursor Tracking Spotlight */}
       <InteractiveGridBackground />
       
@@ -386,12 +394,13 @@ const Projects: React.FC = () => {
                   >
                     {/* Poster container */}
                     <div className="relative overflow-hidden rounded-[1.4rem] bg-neutral-100 dark:bg-neutral-850">
-                      <img 
+                      <ImageWithSkeleton 
                         src={work.image} 
                         alt={work.title} 
                         loading="lazy"
                         referrerPolicy="no-referrer"
-                        className="w-full h-auto transition-transform duration-[1.5s] group-hover:scale-105"
+                        aspectRatio="aspect-[3/4]"
+                        className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
                       />
                       {/* Interactive zoom overlay */}
                       <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

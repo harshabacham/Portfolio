@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { GRAPHIC_DESIGN_WORKS } from '../data/projects';
 import { X, Maximize2, SlidersHorizontal } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import ScrollReveal from '../components/ScrollReveal';
+import { ImageWithSkeleton } from '../components/ui/ImageWithSkeleton';
 
 const GraphicDesign: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -14,6 +16,12 @@ const GraphicDesign: React.FC = () => {
 
   return (
     <div className="pb-40 bg-[#FAF9F6] dark:bg-[#0A0A0A] text-[#111111] dark:text-[#FAF9F6] transition-colors duration-500 selection:bg-black selection:text-white dark:selection:bg-[#FAF9F6] dark:selection:text-black min-h-screen relative overflow-hidden font-inter">
+      <Helmet>
+        <title>Graphic Design | Creative Portfolio</title>
+        <meta name="description" content="View beautiful layouts, posters, editorial designs, and brand identities crafted with premium aesthetic guidelines by Harsha Bacham." />
+        <meta property="og:title" content="Graphic Design | Creative Portfolio" />
+        <meta property="og:description" content="View beautiful layouts, posters, editorial designs, and brand identities crafted with premium aesthetic guidelines by Harsha Bacham." />
+      </Helmet>
       
       {/* Background Grid & Dots */}
       <div className="absolute inset-0 bg-dots opacity-[0.35] pointer-events-none z-0"></div>
@@ -56,11 +64,12 @@ const GraphicDesign: React.FC = () => {
               className="break-inside-avoid group cursor-pointer relative overflow-hidden rounded-[2rem] bg-white dark:bg-neutral-900 border border-black/5 dark:border-white/10 p-2 transition-all duration-500 hover:scale-[1.01] hover:border-black/10 dark:hover:border-white/20 shadow-[0_15px_40px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.04)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
             >
               <div className="relative overflow-hidden rounded-[1.6rem]">
-                <img 
+                <ImageWithSkeleton 
                   src={work.image} 
                   alt={work.title} 
                   loading="lazy"
-                  className="w-full h-auto object-cover transition-all duration-[1s] group-hover:scale-[1.015] opacity-100 block"
+                  aspectRatio="aspect-[3/4]"
+                  className="w-full h-full object-cover transition-all duration-[1s] group-hover:scale-[1.015]"
                 />
                 
                 {/* Floating details overlay on hover */}

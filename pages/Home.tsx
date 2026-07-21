@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { 
   ArrowRight, Globe, Smartphone, Sparkles, Code, Cpu, 
   Mail, ArrowUpRight, Terminal, Clock, Laptop, Star
@@ -56,6 +57,12 @@ const Home: React.FC = () => {
 
   return (
     <div className="pb-40 min-h-screen bg-[#FAF9F6] dark:bg-[#0A0A0A] text-[#111111] dark:text-[#FAF9F6] transition-colors duration-500 selection:bg-black selection:text-white relative overflow-hidden font-inter">
+      <Helmet>
+        <title>Home | Harsha Bacham - Portfolio</title>
+        <meta name="description" content="Welcome to the digital portfolio of Harsha Bacham, containing premium graphic design layouts, high-performance web engineering projects, and modern application development showcases." />
+        <meta property="og:title" content="Home | Harsha Bacham - Portfolio" />
+        <meta property="og:description" content="Welcome to the digital portfolio of Harsha Bacham, containing premium graphic design layouts, high-performance web engineering projects, and modern application development showcases." />
+      </Helmet>
       
       {/* 21st.dev Interactive Grid Background with Cursor Tracking Spotlight */}
       <InteractiveGridBackground />

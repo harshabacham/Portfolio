@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SKILLS } from '../data/projects';
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { 
   Layout as LayoutIcon, Code, Smartphone, Palette, Terminal, 
   Globe, Sparkles, Compass 
@@ -28,6 +29,12 @@ const About: React.FC = () => {
 
   return (
     <div className="pb-40 bg-[#FAF9F6] dark:bg-[#0A0A0A] text-[#111111] dark:text-[#FAF9F6] transition-colors duration-500 selection:bg-black selection:text-white min-h-screen relative overflow-hidden font-inter">
+      <Helmet>
+        <title>About | Harsha Bacham</title>
+        <meta name="description" content="Discover Harsha Bacham's core disciplines, preferred tech stack, and background in design and development." />
+        <meta property="og:title" content="About | Harsha Bacham" />
+        <meta property="og:description" content="Discover Harsha Bacham's core disciplines, preferred tech stack, and background in design and development." />
+      </Helmet>
       {/* 21st.dev Interactive Grid Background with Cursor Tracking Spotlight */}
       <InteractiveGridBackground />
       
@@ -113,10 +120,22 @@ const About: React.FC = () => {
                     { key: 'Focus Areas', val: 'Web Architecture, Native Android, Editorial Graphics' },
                     { key: 'Preferred Stack', val: 'React 19, TypeScript, Flutter Core, Tailwind' },
                     { key: 'Vibe Preference', val: 'Boutique, Minimalist, Grid-forward, high-contrast' },
+                    { key: 'GitHub Profile', val: 'github.com/harshabacham', link: 'https://github.com/harshabacham' },
                   ].map((meta) => (
                     <div key={meta.key} className="flex justify-between items-start text-[13px] border-b border-black/[0.04] dark:border-white/[0.06] pb-3">
                       <span className="font-mono text-neutral-400 dark:text-neutral-500 font-bold">{meta.key}</span>
-                      <span className="text-neutral-700 dark:text-neutral-300 font-outfit font-bold uppercase text-right max-w-[200px] leading-tight">{meta.val}</span>
+                      {'link' in meta && meta.link ? (
+                        <a 
+                          href={meta.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#FF6A00] hover:underline font-outfit font-bold uppercase text-right max-w-[200px] leading-tight transition-all"
+                        >
+                          {meta.val}
+                        </a>
+                      ) : (
+                        <span className="text-neutral-700 dark:text-neutral-300 font-outfit font-bold uppercase text-right max-w-[200px] leading-tight">{meta.val}</span>
+                      )}
                     </div>
                   ))}
                 </div>

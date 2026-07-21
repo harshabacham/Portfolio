@@ -1,11 +1,19 @@
 import React from 'react';
 import { APP_DEVELOPMENT_WORKS } from '../data/projects';
 import { Smartphone, CheckCircle2, PlayCircle, Layers, ShieldCheck, Cpu } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import ScrollReveal from '../components/ScrollReveal';
+import { ImageWithSkeleton } from '../components/ui/ImageWithSkeleton';
 
 const AppDevelopment: React.FC = () => {
   return (
     <div className="pb-40 bg-[#FAF9F6] dark:bg-[#0A0A0A] text-[#111111] dark:text-[#FAF9F6] transition-colors duration-500 selection:bg-black selection:text-white dark:selection:bg-[#FAF9F6] dark:selection:text-black min-h-screen relative overflow-hidden font-inter">
+      <Helmet>
+        <title>App Development | iOS & Android Showcase</title>
+        <meta name="description" content="Explore fluidly animated, high-performance modular mobile application systems, Swift and Flutter designs compiled by Harsha Bacham." />
+        <meta property="og:title" content="App Development | iOS & Android Showcase" />
+        <meta property="og:description" content="Explore fluidly animated, high-performance modular mobile application systems, Swift and Flutter designs compiled by Harsha Bacham." />
+      </Helmet>
       
       {/* Background Grid & Dots */}
       <div className="absolute inset-0 bg-dots opacity-[0.35] pointer-events-none z-0"></div>
@@ -54,13 +62,14 @@ const AppDevelopment: React.FC = () => {
                       
                       {/* Device Container - Apple Style Off-White Device */}
                       <div className="relative bg-white dark:bg-neutral-900 rounded-[3rem] p-3 border border-black/5 dark:border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.04)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.4)] overflow-hidden aspect-[9/18.5] transition-all duration-700 group-hover:-translate-y-1.5 group-hover:border-black/10 dark:group-hover:border-white/20">
-                        <img 
+                        <ImageWithSkeleton 
                           src={app.image} 
                           alt={app.title} 
-                          className="w-full h-full object-cover rounded-[2.5rem] opacity-100 transition-all duration-700"
+                          aspectRatio="aspect-[9/18.5]"
+                          className="w-full h-full object-cover rounded-[2.5rem]"
                         />
                         {/* Elegant reflection shine */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.1] via-transparent to-transparent pointer-events-none"></div>
+                        <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.1] via-transparent to-transparent pointer-events-none z-20"></div>
                         
                         {/* Elegant Minimal Notch */}
                         <div className="absolute top-5 left-1/2 -translate-x-1/2 w-20 h-4 bg-neutral-900 rounded-full flex items-center justify-center border border-white/5 z-20 shadow-sm">

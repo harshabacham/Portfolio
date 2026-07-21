@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, Github, Linkedin, Instagram, Send, MapPin, Calendar, CheckCircle, Terminal } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import ScrollReveal from '../components/ScrollReveal';
 import { SpotlightCard } from '../components/ui/SpotlightCard';
 import { ShinyButton } from '../components/ui/ShinyButton';
@@ -85,6 +86,12 @@ const Contact: React.FC = () => {
 
   return (
     <div className="pb-40 bg-[#FAF9F6] dark:bg-[#0A0A0A] text-[#111111] dark:text-[#FAF9F6] transition-colors duration-500 selection:bg-black selection:text-white dark:selection:bg-[#FAF9F6] dark:selection:text-black min-h-screen relative overflow-hidden font-inter">
+      <Helmet>
+        <title>Contact | Hire & Collaborate</title>
+        <meta name="description" content="Get in touch with Harsha Bacham for freelance projects, consultations, or system audits. Start an inquiry today." />
+        <meta property="og:title" content="Contact | Hire & Collaborate" />
+        <meta property="og:description" content="Get in touch with Harsha Bacham for freelance projects, consultations, or system audits. Start an inquiry today." />
+      </Helmet>
       {/* 21st.dev Interactive Grid Background with Cursor Tracking Spotlight */}
       <InteractiveGridBackground />
       
