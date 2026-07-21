@@ -26,11 +26,9 @@ export const AnimatedThemeToggler: React.FC<AnimatedThemeTogglerProps> = ({
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("theme");
       if (saved === "dark" || saved === "light") return saved;
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
+      return "dark";
     }
-    return "light";
+    return "dark";
   });
 
   // Track root document changes manually to stay in sync with other togglers

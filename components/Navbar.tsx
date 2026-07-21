@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { AnimatedThemeToggler } from './ui/animated-theme-toggler';
+import { AsciiGlitchRipple } from './ui/ascii-glitch-ripple';
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -11,9 +12,9 @@ const Navbar: React.FC = () => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme');
       if (saved === 'dark' || saved === 'light') return saved;
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      return 'dark';
     }
-    return 'light';
+    return 'dark';
   });
 
   useEffect(() => {
@@ -136,9 +137,10 @@ const Navbar: React.FC = () => {
           {/* Brand Logo */}
           <Link 
             to="/" 
-            className="font-outfit font-black text-lg tracking-tighter text-[#111111] dark:text-[#FAF9F6] hover:scale-105 transition-transform duration-300 flex items-center gap-1.5"
+            className="font-outfit font-black text-lg tracking-tighter text-[#111111] dark:text-[#FAF9F6] flex items-center gap-1"
           >
-            HB<span className="text-[#FF5A36]">.</span>
+            <AsciiGlitchRipple as="span" dur={800} spread={0.6}>HB</AsciiGlitchRipple>
+            <span className="text-[#FF5A36] font-bold">.</span>
           </Link>
 
           {/* Nav Items with Hover effect */}
@@ -181,7 +183,7 @@ const Navbar: React.FC = () => {
                     {isActive && (
                       <span className="w-1.5 h-1.5 rounded-full bg-[#FF5A36]" />
                     )}
-                    {link.name}
+                    <AsciiGlitchRipple as="span" dur={600} spread={0.8}>{link.name}</AsciiGlitchRipple>
                   </span>
                 </Link>
               );
@@ -190,7 +192,7 @@ const Navbar: React.FC = () => {
 
           {/* Right Controls */}
           <div className="flex items-center gap-4">
-            <AnimatedThemeToggler variant="circle" duration={700} />
+            <AnimatedThemeToggler variant="star" duration={700} />
             <Link 
               to="/contact"
               className="px-4 py-2 bg-[#111111] dark:bg-[#FAF9F6] text-white dark:text-[#111111] text-[10px] font-outfit uppercase tracking-wider font-extrabold rounded-full hover:bg-[#FF5A36] dark:hover:bg-[#FF5A36] dark:hover:text-white transition-colors duration-300"
@@ -222,14 +224,15 @@ const Navbar: React.FC = () => {
           {/* Brand Logo */}
           <Link 
             to="/" 
-            className="font-outfit font-black text-base tracking-tighter text-[#111111] dark:text-[#FAF9F6] flex items-center gap-1"
+            className="font-outfit font-black text-base tracking-tighter text-[#111111] dark:text-[#FAF9F6] flex items-center gap-0.5"
           >
-            HB<span className="text-[#FF5A36]">.</span>
+            <AsciiGlitchRipple as="span" dur={800} spread={0.6}>HB</AsciiGlitchRipple>
+            <span className="text-[#FF5A36] font-bold">.</span>
           </Link>
 
           {/* Action Toggle Button */}
           <div className="flex items-center gap-2">
-            <AnimatedThemeToggler variant="circle" duration={700} />
+            <AnimatedThemeToggler variant="star" duration={700} />
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus:outline-none"

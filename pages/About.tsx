@@ -64,7 +64,7 @@ const About: React.FC = () => {
                 <div className="absolute top-0 left-0 w-6 h-6 border-t border-l border-[#FF5A36] -mt-2 -ml-2 z-20"></div>
                 <div className="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-[#FF5A36] -mb-2 -mr-2 z-20"></div>
 
-                <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-white dark:bg-neutral-900 border border-black/5 dark:border-white/10 relative z-10 shadow-[0_20px_50px_rgba(0,0,0,0.03)] transition-all duration-700 hover:border-black/10 dark:hover:border-white/20">
+                <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-transparent border border-black/5 dark:border-white/10 relative z-10 shadow-[0_20px_50px_rgba(0,0,0,0.03)] transition-all duration-700 hover:border-black/10 dark:hover:border-white/20">
                   <img 
                     src="https://i.postimg.cc/BnT6wZJm/Whats-App-Image-2025-09-16-at-2-06-41-PM.jpg" 
                     alt="Harsha Bacham Portrait" 
@@ -85,26 +85,6 @@ const About: React.FC = () => {
                 </div>
               </div>
             </ScrollReveal>
-
-            {/* Metadata Card */}
-            <ScrollReveal direction="up" delay={150}>
-              <SpotlightCard className="bg-white dark:bg-neutral-900 p-8 rounded-[2rem] border border-black/5 dark:border-white/10 space-y-6 shadow-sm" glowColor="rgba(255, 90, 54, 0.08)">
-                <span className="text-[8px] font-mono text-neutral-400 dark:text-neutral-500 uppercase tracking-widest block font-bold">SYSTEM METADATA</span>
-                
-                <div className="space-y-4">
-                  {[
-                    { key: 'Focus Areas', val: 'Web Architecture, Native Android, Editorial Graphics' },
-                    { key: 'Preferred Stack', val: 'React 19, TypeScript, Flutter Core, Tailwind' },
-                    { key: 'Vibe Preference', val: 'Boutique, Minimalist, Grid-forward, high-contrast' },
-                  ].map((meta) => (
-                    <div key={meta.key} className="flex justify-between items-start text-[11px] border-b border-black/[0.04] dark:border-white/[0.06] pb-3">
-                      <span className="font-mono text-neutral-400 dark:text-neutral-500 font-bold">{meta.key}</span>
-                      <span className="text-neutral-700 dark:text-neutral-300 font-outfit font-bold uppercase text-right max-w-[200px] leading-tight">{meta.val}</span>
-                    </div>
-                  ))}
-                </div>
-              </SpotlightCard>
-            </ScrollReveal>
           </div>
 
           {/* Philosophy & Timeline (Bento 7-cols) */}
@@ -123,7 +103,25 @@ const About: React.FC = () => {
               </div>
             </ScrollReveal>
 
-
+            {/* Metadata Card */}
+            <ScrollReveal direction="up" delay={180}>
+              <SpotlightCard className="bg-transparent p-8 rounded-[2rem] space-y-6" glowColor="rgba(255, 90, 54, 0.08)">
+                <span className="text-[8px] font-mono text-neutral-400 dark:text-neutral-500 uppercase tracking-widest block font-bold">SYSTEM METADATA</span>
+                
+                <div className="space-y-4">
+                  {[
+                    { key: 'Focus Areas', val: 'Web Architecture, Native Android, Editorial Graphics' },
+                    { key: 'Preferred Stack', val: 'React 19, TypeScript, Flutter Core, Tailwind' },
+                    { key: 'Vibe Preference', val: 'Boutique, Minimalist, Grid-forward, high-contrast' },
+                  ].map((meta) => (
+                    <div key={meta.key} className="flex justify-between items-start text-[13px] border-b border-black/[0.04] dark:border-white/[0.06] pb-3">
+                      <span className="font-mono text-neutral-400 dark:text-neutral-500 font-bold">{meta.key}</span>
+                      <span className="text-neutral-700 dark:text-neutral-300 font-outfit font-bold uppercase text-right max-w-[200px] leading-tight">{meta.val}</span>
+                    </div>
+                  ))}
+                </div>
+              </SpotlightCard>
+            </ScrollReveal>
           </div>
 
         </div>
@@ -153,8 +151,8 @@ const About: React.FC = () => {
                     onClick={() => setActiveCompetency(index)}
                     className={`p-8 rounded-[2rem] border transition-all duration-500 cursor-pointer group relative overflow-hidden h-full flex flex-col justify-between shadow-sm hover:shadow-md ${
                       isSelected 
-                        ? 'border-[#FF5A36]/30 bg-white dark:bg-neutral-900/90' 
-                        : 'bg-white dark:bg-neutral-900/60 border-black/5 dark:border-white/10 hover:border-black/10 dark:hover:border-white/20'
+                        ? 'border-[#FF5A36]/30 bg-transparent' 
+                        : 'bg-transparent border-black/5 dark:border-white/10 hover:border-black/10 dark:hover:border-white/20'
                     }`}
                     glowColor="rgba(255, 90, 54, 0.08)"
                   >

@@ -11,6 +11,7 @@ import WebDevelopment from './pages/WebDevelopment';
 import AppDevelopment from './pages/AppDevelopment';
 import Contact from './pages/Contact';
 import AnimatedPage from './components/AnimatedPage';
+import DemoPage from './pages/DemoPage';
 
 // Scroll to top on route change, or to a specific section if hash is present
 const ScrollToTop = () => {
@@ -46,6 +47,7 @@ const AppContent: React.FC = () => {
           <Route path="/web-development" element={<AnimatedPage><WebDevelopment /></AnimatedPage>} />
           <Route path="/app-development" element={<AnimatedPage><AppDevelopment /></AnimatedPage>} />
           <Route path="/contact" element={<AnimatedPage><Contact /></AnimatedPage>} />
+          <Route path="/demo" element={<AnimatedPage><DemoPage /></AnimatedPage>} />
         </Routes>
       </AnimatePresence>
     </Layout>

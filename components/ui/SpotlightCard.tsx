@@ -28,7 +28,7 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden rounded-[2.5rem] border border-black/5 dark:border-white/10 bg-white dark:bg-neutral-900/90 shadow-sm transition-all duration-500 hover:border-black/10 dark:hover:border-white/20 hover:shadow-[0_20px_50px_rgba(0,0,0,0.03)] dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] ${className}`}
+      className={`relative overflow-hidden rounded-[2.5rem] bg-transparent transition-all duration-500 ${className}`}
       {...props}
     >
       <motion.div

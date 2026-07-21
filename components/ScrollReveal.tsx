@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
+import { motion } from 'motion/react';
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -19,71 +20,36 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   once = true,
   className = '',
 }) => {
-  const [isIntersecting, setIsIntersecting] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsIntersecting(true);
-          if (once && ref.current) {
-            observer.unobserve(ref.current);
-          }
-        } else if (!once) {
-          setIsIntersecting(false);
-        }
-      },
-      {
-        threshold,
-        rootMargin: '0px 0px -60px 0px', // slightly offset trigger to feel more natural as elements enter from bottom
-      }
-    );
-
-    const currentRef = ref.current;
-    if (currentRef) {
-      observer.observe(currentRef);
+  const getInitialStyles = () => {
+    switch (direction) {
+      case 'up':
+        return { opacity: 0, y: 30 };
+      case 'down':
+        return { opacity: 0, y: -30 };
+      case 'left':
+        return { opacity: 0, x: 30 };
+      case 'right':
+        return { opacity: 0, x: -30 };
+      case 'none':
+      default:
+        return { opacity: 0 };
     }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, [threshold, once]);
-
-  const getDirectionStyles = () => {
-    if (!isIntersecting) {
-      switch (direction) {
-        case 'up':
-          return 'opacity-0 translate-y-12';
-        case 'down':
-          return 'opacity-0 -translate-y-12';
-        case 'left':
-          return 'opacity-0 translate-x-12';
-        case 'right':
-          return 'opacity-0 -translate-x-12';
-        case 'none':
-        default:
-          return 'opacity-0';
-      }
-    }
-    return 'opacity-100 translate-y-0 translate-x-0';
-  };
-
-  const transitionStyle = {
-    transitionDuration: `${duration}ms`,
-    transitionDelay: `${delay}ms`,
   };
 
   return (
-    <div
-      ref={ref}
-      className={`transition-all ease-out will-change-transform ${getDirectionStyles()} ${className}`}
-      style={transitionStyle}
+    <motion.div
+      initial={getInitialStyles()}
+      whileInView={{ opacity: 1, y: 0, x: 0 }}
+      viewport={{ once, amount: threshold }}
+      transition={{
+        duration: duration / 1000,
+        delay: delay / 1000,
+        ease: [0.16, 1, 0.3, 1], // iOS/Apple dynamic curves
+      }}
+      className={className}
     >
       {children}
-    </div>
+    </motion.div>
   );
 };
 

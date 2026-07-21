@@ -10,7 +10,11 @@ import { SpotlightCard } from '../components/ui/SpotlightCard';
 import { ShinyButton } from '../components/ui/ShinyButton';
 import { InteractiveGridBackground } from '../components/ui/InteractiveGridBackground';
 import { BorderBeam } from '../components/ui/BorderBeam';
+import { AsciiGlitchRipple } from '../components/ui/ascii-glitch-ripple';
+import { CylinderCarousel } from '../components/ui/cylinder-carousel';
+import { GRAPHIC_DESIGN_WORKS } from '../data/projects';
 import CurvedLoop from '../components/CurvedLoop';
+import { Skiper28 } from '../components/v1/skiper28';
 
 const Home: React.FC = () => {
   const [timeStr, setTimeStr] = useState('');
@@ -156,9 +160,14 @@ const Home: React.FC = () => {
                  {/* Secondary architectural row / High-Tech Metadata strip */}
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-4 border-t border-black/[0.06] dark:border-white/[0.08] pt-6 mt-4">
                   <div className="md:col-span-5 flex items-center gap-3">
-                    <span className="text-[4.5vw] sm:text-[2.2vw] md:text-[1.6vw] font-outfit font-black tracking-[0.06em] text-neutral-900 dark:text-neutral-100 uppercase">
+                    <AsciiGlitchRipple 
+                      as="span" 
+                      className="text-[4.5vw] sm:text-[2.2vw] md:text-[1.6vw] font-outfit font-black tracking-[0.06em] text-neutral-900 dark:text-neutral-100 uppercase"
+                      dur={1000}
+                      spread={0.8}
+                    >
                       SYSTEM ARCHITECT
-                    </span>
+                    </AsciiGlitchRipple>
                     <span className="px-2 py-0.5 border border-emerald-500/20 bg-emerald-500/5 text-emerald-600 dark:text-emerald-400 text-[8px] font-mono font-extrabold rounded-md uppercase tracking-widest hidden sm:inline-block">
                       ACTIVES
                     </span>
@@ -189,9 +198,9 @@ const Home: React.FC = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
                   
                   {/* Portrait Column */}
-                  <div className="lg:col-span-4 flex flex-col justify-between space-y-6">
+                  <div className="lg:col-span-4">
                     {/* Photo frame with rounded corners and scale feedback */}
-                    <div className="relative aspect-square overflow-hidden rounded-[2rem] border border-black/[0.04] dark:border-white/[0.08] bg-neutral-50 dark:bg-neutral-900 shadow-[inset_0_2px_12px_rgba(0,0,0,0.02)]">
+                    <div data-cursor="view" className="relative aspect-square overflow-hidden rounded-[2rem] border border-black/[0.04] dark:border-white/[0.08] bg-neutral-50 dark:bg-neutral-900 shadow-[inset_0_2px_12px_rgba(0,0,0,0.02)] cursor-pointer">
                       <div className="absolute inset-0 bg-gradient-to-tr from-[#FF6A00]/5 via-transparent to-transparent opacity-0 group-hover/portrait:opacity-100 transition-opacity duration-700 z-10"></div>
                       <img 
                         src="https://i.postimg.cc/BnT6wZJm/Whats-App-Image-2025-09-16-at-2-06-41-PM.jpg" 
@@ -211,21 +220,6 @@ const Home: React.FC = () => {
                         </span>
                       </div>
                     </div>
-
-                    {/* Live Status Deck */}
-                    <div className="px-1.5 py-1 space-y-3 font-mono text-[9px] border-t border-black/[0.03] dark:border-white/[0.06] pt-4">
-                      <div className="flex justify-between items-center text-neutral-400 dark:text-neutral-500">
-                        <span>[ REGION ]</span>
-                        <span className="text-neutral-900 dark:text-neutral-100 font-bold uppercase tracking-wider">INDIA // EAST</span>
-                      </div>
-                      <div className="flex justify-between items-center text-neutral-400 dark:text-neutral-500">
-                        <span>[ STATUS ]</span>
-                        <span className="text-emerald-600 dark:text-emerald-400 font-bold uppercase flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                          ROUTING ACTIVE
-                        </span>
-                      </div>
-                    </div>
                   </div>
 
                   {/* Content & Action Column */}
@@ -239,12 +233,24 @@ const Home: React.FC = () => {
                       </div>
 
                       <div className="space-y-4">
-                        <h3 className="text-xl md:text-2xl font-syne font-extrabold text-neutral-950 dark:text-neutral-50 tracking-tight leading-snug">
-                          Architecting beautiful high-performance systems with flawless visual cadence.
-                        </h3>
                         <p className="text-neutral-500 dark:text-neutral-400 text-xs md:text-sm leading-relaxed font-light max-w-3xl">
                           Harsha Bacham operates at the intersection of robust backend telemetry and pristine client-side execution. By pairing absolute modular standards with fluid micro-interactions, he elevates typical workspaces into masterpieces of modern engineering.
                         </p>
+                      </div>
+
+                      {/* Live Status Deck - Elegantly adapted as a horizontal strip */}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-6 py-4 border-y border-black/[0.04] dark:border-white/[0.06] font-mono text-[9px] px-1">
+                        <div className="flex items-center gap-2 text-neutral-400 dark:text-neutral-500">
+                          <span>[ REGION ]</span>
+                          <span className="text-neutral-900 dark:text-neutral-100 font-bold uppercase tracking-wider">INDIA // EAST</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-neutral-400 dark:text-neutral-500">
+                          <span>[ STATUS ]</span>
+                          <span className="text-emerald-600 dark:text-emerald-400 font-bold uppercase flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            ROUTING ACTIVE
+                          </span>
+                        </div>
                       </div>
 
                       {/* High-End Design Pillars Grid */}
@@ -255,7 +261,14 @@ const Home: React.FC = () => {
                             <span>[ 01 ]</span>
                             <span className="text-[#FF6A00] font-bold">CORE</span>
                           </div>
-                          <h4 className="text-[11px] font-bold font-outfit uppercase tracking-wider text-neutral-900 dark:text-[#FAF9F6]">SYSTEM ARCHITECTURE</h4>
+                          <AsciiGlitchRipple 
+                            as="h4" 
+                            className="text-[11px] font-bold font-outfit uppercase tracking-wider text-neutral-900 dark:text-[#FAF9F6]"
+                            dur={800}
+                            spread={0.7}
+                          >
+                            SYSTEM ARCHITECTURE
+                          </AsciiGlitchRipple>
                           <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-light leading-relaxed">
                             Low-latency compiler pipelines, structured native schemas, and mathematically robust state graphs.
                           </p>
@@ -266,7 +279,14 @@ const Home: React.FC = () => {
                             <span>[ 02 ]</span>
                             <span className="text-[#FF6A00] font-bold">CRAFT</span>
                           </div>
-                          <h4 className="text-[11px] font-bold font-outfit uppercase tracking-wider text-neutral-900 dark:text-[#FAF9F6]">VISUAL PRECISION</h4>
+                          <AsciiGlitchRipple 
+                            as="h4" 
+                            className="text-[11px] font-bold font-outfit uppercase tracking-wider text-neutral-900 dark:text-[#FAF9F6]"
+                            dur={800}
+                            spread={0.7}
+                          >
+                            VISUAL PRECISION
+                          </AsciiGlitchRipple>
                           <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-light leading-relaxed">
                             Bespoke grid structures, Swiss typography scales, and responsive micro-animations.
                           </p>
@@ -277,7 +297,14 @@ const Home: React.FC = () => {
                             <span>[ 03 ]</span>
                             <span className="text-[#FF6A00] font-bold">UTILITY</span>
                           </div>
-                          <h4 className="text-[11px] font-bold font-outfit uppercase tracking-wider text-neutral-900 dark:text-[#FAF9F6]">COGNITIVE FLOW</h4>
+                          <AsciiGlitchRipple 
+                            as="h4" 
+                            className="text-[11px] font-bold font-outfit uppercase tracking-wider text-neutral-900 dark:text-[#FAF9F6]"
+                            dur={800}
+                            spread={0.7}
+                          >
+                            COGNITIVE FLOW
+                          </AsciiGlitchRipple>
                           <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-light leading-relaxed">
                             Intelligent workspace flows, responsive tactile layouts, and lightweight memory profiles.
                           </p>
@@ -321,16 +348,94 @@ const Home: React.FC = () => {
         />
       </section>
 
+      {/* Symmetrical Design Cylinder Carousel */}
+      <section className="py-12 md:py-16 relative z-10 max-w-7xl mx-auto px-6 md:px-12 overflow-hidden">
+        <ScrollReveal direction="up" delay={50}>
+          <div className="text-center space-y-3 mb-6">
+            <span className="text-[9px] font-mono text-[#FF5A36] uppercase tracking-[0.3em] font-bold">
+              [ VISUAL SPECTRUM // ARCHIVAL PLATES ]
+            </span>
+            <h2 className="text-3xl md:text-5xl font-outfit font-extrabold tracking-tighter uppercase text-neutral-900 dark:text-neutral-50">
+              DESIGN <span className="font-signature font-normal text-[#FF6A00] tracking-normal text-4xl md:text-5xl normal-case">showcase</span>
+            </h2>
+            <p className="text-xs md:text-sm text-neutral-500 dark:text-neutral-400 font-light max-w-lg mx-auto">
+              A dynamic circular projection of high-fidelity visual layouts, posters, and vector identities.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal direction="up" delay={150}>
+          <div className="relative py-2">
+            <CylinderCarousel 
+              images={GRAPHIC_DESIGN_WORKS.slice(0, 12).map(work => ({ src: work.image, alt: work.title }))}
+              animationDuration={35}
+              cardWidth={200}
+              className="min-h-[340px] md:min-h-[380px]"
+              cardClassName="border border-black/5 dark:border-white/10 shadow-lg dark:shadow-black/50"
+            />
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal direction="up" delay={200}>
+          <div className="text-center mt-6">
+            <Link 
+              to="/graphic-design"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-neutral-950 dark:bg-neutral-50 text-white dark:text-neutral-950 hover:bg-[#FF6A00] dark:hover:bg-[#FF6A00] hover:text-white dark:hover:text-white font-outfit font-bold rounded-xl transition-all duration-300 text-[10px] uppercase tracking-wider shadow-sm hover:scale-[1.02]"
+            >
+              Explore Full Gallery <ArrowRight size={12} />
+            </Link>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* 3D Perspective Text Scroll Component section */}
+      <section className="relative z-10 w-full overflow-hidden bg-transparent">
+        <ScrollReveal direction="up" delay={50}>
+          <Skiper28 
+            title="3D PERSPECTIVE TEXT SCROLL"
+            subtitle="Interactive spatial text rendering engine driven by client-side scroll mechanics"
+          />
+        </ScrollReveal>
+      </section>
+
       {/* Beautiful Editorial Quote Section */}
-      <ScrollReveal direction="up" delay={50}>
-        <section className="py-24 text-center max-w-4xl mx-auto px-6 border-t border-black/[0.04] dark:border-white/[0.06]">
-          <div className="inline-block w-8 h-[1.5px] bg-[#FF6A00] mb-6"></div>
-          <p className="font-instrument text-neutral-600 dark:text-neutral-300 text-2xl md:text-3xl font-light italic leading-relaxed">
-            "Design is not decoration. We architect logical systems, pair clean layouts, and orchestrate robust technologies into pristine digital artifacts."
-          </p>
-          <div className="mt-4 text-[9px] font-mono text-neutral-400 dark:text-neutral-500 uppercase tracking-[0.2em] font-bold">— HARSHA BACHAM PORTFOLIO</div>
-        </section>
-      </ScrollReveal>
+      <section className="py-24 max-w-4xl mx-auto px-6 relative">
+        <ScrollReveal direction="up" delay={50}>
+          <div className="relative overflow-hidden rounded-3xl border border-black/[0.05] dark:border-white/[0.05] bg-white/[0.2] dark:bg-black/[0.2] backdrop-blur-md p-8 md:p-16 text-center group">
+            
+            {/* 21st.dev style subtle interactive background effect */}
+            <div className="absolute inset-0 bg-dots opacity-35 group-hover:opacity-50 transition-opacity duration-700 pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-[#FF6A00]/[0.02] dark:bg-[#FF6A00]/[0.03] blur-[80px] pointer-events-none group-hover:scale-125 transition-transform duration-700" />
+            
+            {/* Small corner decorative crosses */}
+            <div className="absolute top-3 left-3 text-[10px] font-mono text-neutral-300 dark:text-neutral-700 pointer-events-none select-none">+</div>
+            <div className="absolute top-3 right-3 text-[10px] font-mono text-neutral-300 dark:text-neutral-700 pointer-events-none select-none">+</div>
+            <div className="absolute bottom-3 left-3 text-[10px] font-mono text-neutral-300 dark:text-neutral-700 pointer-events-none select-none">+</div>
+            <div className="absolute bottom-3 right-3 text-[10px] font-mono text-neutral-300 dark:text-neutral-700 pointer-events-none select-none">+</div>
+
+            {/* Elegant Manifesto Badge */}
+            <div className="relative z-10 inline-flex items-center gap-2 px-3 py-1 bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/10 rounded-full text-[9px] font-mono tracking-widest text-[#FF6A00] uppercase mb-8 shadow-sm">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF6A00] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#FF6A00]"></span>
+              </span>
+              DESIGN PHILOSOPHY
+            </div>
+
+            {/* Quote with gorgeous Space Grotesk / high contrast modern font */}
+            <p id="philosophy-quote" className="font-space text-neutral-700 dark:text-neutral-200 text-xl md:text-2xl lg:text-3xl font-light tracking-tight leading-relaxed max-w-2xl mx-auto z-10 relative">
+              "Design is not decoration. We architect <span className="text-neutral-950 dark:text-white font-medium underline decoration-[#FF6A00]/50 decoration-2 underline-offset-4">logical systems</span>, pair <span className="text-neutral-950 dark:text-white font-medium underline decoration-[#FF6A00]/50 decoration-2 underline-offset-4">clean layouts</span>, and orchestrate <span className="text-neutral-950 dark:text-white font-medium underline decoration-[#FF6A00]/50 decoration-2 underline-offset-4">robust technologies</span> into pristine digital artifacts."
+            </p>
+
+            {/* Author inside the card */}
+            <div className="mt-8 pt-6 border-t border-black/[0.04] dark:border-white/[0.04] flex flex-col sm:flex-row items-center justify-center gap-2 z-10 relative">
+              <div className="text-[9px] font-mono text-neutral-400 dark:text-neutral-500 uppercase tracking-[0.2em] font-bold">
+                — HARSHA BACHAM PORTFOLIO
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
 
     </div>
   );

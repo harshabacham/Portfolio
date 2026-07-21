@@ -176,7 +176,7 @@ const Projects: React.FC = () => {
                 return (
                   <SpotlightCard 
                     key={project.id} 
-                    className={`p-6 md:p-8 flex flex-col justify-between h-full bg-white dark:bg-neutral-900/60 border border-black/5 dark:border-white/10 rounded-[2.5rem] group/card ${!isEvenCol ? 'md:mt-24' : ''}`}
+                    className={`p-6 md:p-8 flex flex-col justify-between h-full bg-transparent rounded-[2.5rem] group/card ${!isEvenCol ? 'md:mt-24' : ''}`}
                     glowColor="rgba(255, 90, 54, 0.08)"
                   >
                     <div>
@@ -271,7 +271,7 @@ const Projects: React.FC = () => {
                 return (
                   <SpotlightCard 
                     key={app.id} 
-                    className={`p-6 md:p-8 flex flex-col justify-between h-full bg-white dark:bg-neutral-900/60 border border-black/5 dark:border-white/10 rounded-[2.5rem] group/card ${!isEvenCol ? 'md:mt-24' : ''}`}
+                    className={`p-6 md:p-8 flex flex-col justify-between h-full bg-transparent rounded-[2.5rem] group/card ${!isEvenCol ? 'md:mt-24' : ''}`}
                     glowColor="rgba(255, 90, 54, 0.08)"
                   >
                     {/* Device Mockup Card */}
@@ -381,17 +381,17 @@ const Projects: React.FC = () => {
                   <SpotlightCard 
                     key={work.id} 
                     onClick={() => setSelectedImage(work.image)}
-                    className="break-inside-avoid group cursor-pointer relative overflow-hidden rounded-[1.8rem] bg-white dark:bg-neutral-900/60 border border-black/5 dark:border-white/10 p-2 transition-all duration-500 hover:scale-[1.01] hover:border-black/10 dark:hover:border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.01)] dark:shadow-[0_15px_35px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.03)] flex flex-col"
+                    className="break-inside-avoid group cursor-pointer relative overflow-hidden rounded-[1.8rem] bg-transparent p-2 transition-all duration-500 hover:scale-[1.01] flex flex-col"
                     glowColor="rgba(255, 90, 54, 0.08)"
                   >
                     {/* Poster container */}
-                    <div className="relative overflow-hidden rounded-[1.4rem] aspect-[3/4] bg-neutral-100 dark:bg-neutral-850">
+                    <div className="relative overflow-hidden rounded-[1.4rem] bg-neutral-100 dark:bg-neutral-850">
                       <img 
                         src={work.image} 
                         alt={work.title} 
                         loading="lazy"
                         referrerPolicy="no-referrer"
-                        className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
+                        className="w-full h-auto transition-transform duration-[1.5s] group-hover:scale-105"
                       />
                       {/* Interactive zoom overlay */}
                       <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

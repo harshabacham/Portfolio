@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Github, Linkedin, Send, MapPin, Calendar, CheckCircle, Terminal } from 'lucide-react';
+import { Mail, Github, Linkedin, Instagram, Send, MapPin, Calendar, CheckCircle, Terminal } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import ScrollReveal from '../components/ScrollReveal';
 import { SpotlightCard } from '../components/ui/SpotlightCard';
@@ -118,7 +118,7 @@ const Contact: React.FC = () => {
               <div className="space-y-10">
                 
                 {/* Active Availability */}
-                <div className="flex items-center gap-3 px-4 py-2.5 bg-white dark:bg-neutral-900 border border-black/5 dark:border-white/10 rounded-2xl w-fit shadow-sm">
+                <div className="flex items-center gap-3 px-4 py-2.5 bg-transparent border border-black/5 dark:border-white/10 rounded-2xl w-fit shadow-sm">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -130,7 +130,7 @@ const Contact: React.FC = () => {
                 <div className="space-y-6">
                   <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-500 uppercase tracking-widest block font-bold">[ ELECTRONIC INBOX ]</span>
                   
-                  <SpotlightCard className="bg-white dark:bg-neutral-900 rounded-3xl border border-black/5 dark:border-white/10 overflow-hidden shadow-sm" glowColor="rgba(255, 90, 54, 0.08)">
+                  <SpotlightCard className="bg-transparent rounded-3xl border border-black/5 dark:border-white/10 overflow-hidden shadow-sm" glowColor="rgba(255, 90, 54, 0.08)">
                     <a 
                       href="mailto:bachamharsha4091@gmail.com" 
                       className="group block p-6 transition-all duration-500"
@@ -148,7 +148,7 @@ const Contact: React.FC = () => {
                   </SpotlightCard>
 
                   {/* Metadata Indicators */}
-                  <SpotlightCard className="p-6 bg-white dark:bg-neutral-900 border border-black/5 dark:border-white/10 rounded-3xl space-y-4 shadow-sm" glowColor="rgba(255, 90, 54, 0.08)">
+                  <SpotlightCard className="p-6 bg-transparent border border-black/5 dark:border-white/10 rounded-3xl space-y-4 shadow-sm" glowColor="rgba(255, 90, 54, 0.08)">
                     <div className="flex items-center gap-3 text-neutral-500 dark:text-neutral-400 text-xs">
                       <MapPin size={14} className="text-[#FF5A36]" />
                       <span className="font-mono font-bold text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Global Integration</span>
@@ -167,13 +167,14 @@ const Contact: React.FC = () => {
                     {[
                       { icon: <Github size={16} />, label: 'GitHub', link: 'https://github.com/harshabacham' },
                       { icon: <Linkedin size={16} />, label: 'LinkedIn', link: 'https://www.linkedin.com/in/harsha-bacham' },
+                      { icon: <Instagram size={16} />, label: 'Instagram', link: 'https://instagram.com/harshabacham' },
                     ].map((social) => (
                       <a 
                         key={social.label} 
                         href={social.link} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="w-12 h-12 rounded-2xl bg-white dark:bg-neutral-900 border border-black/5 dark:border-white/10 flex items-center justify-center text-neutral-400 dark:text-neutral-500 hover:text-black dark:hover:text-white hover:border-black/10 dark:hover:border-white/20 transition-all shadow-sm"
+                        className="w-12 h-12 rounded-2xl bg-transparent border border-black/5 dark:border-white/10 flex items-center justify-center text-neutral-400 dark:text-neutral-500 hover:text-black dark:hover:text-white hover:border-black/10 dark:hover:border-white/20 transition-all shadow-sm"
                         title={social.label}
                       >
                         {social.icon}
@@ -190,7 +191,7 @@ const Contact: React.FC = () => {
           <div className="lg:col-span-8">
             <ScrollReveal direction="up" delay={200}>
               <SpotlightCard 
-                className="bg-white dark:bg-neutral-900 p-8 md:p-12 rounded-[2.5rem] border border-black/5 dark:border-white/10 relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.03)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
+                className="bg-transparent p-8 md:p-12 rounded-[2.5rem] border border-black/5 dark:border-white/10 relative overflow-hidden"
                 glowColor="rgba(255, 90, 54, 0.08)"
               >
                 <div className="absolute top-0 right-0 w-80 h-80 bg-[#FF5A36]/[0.01] blur-3xl rounded-full pointer-events-none"></div>
